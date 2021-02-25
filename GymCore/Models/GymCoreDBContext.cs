@@ -13,6 +13,6 @@ namespace GymCore.Models
             
         }
 
-        public DbSet<User> Users { get; set; }
+      
     }
 }
