@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GymCore.Models
+namespace GymCore.Infrastructure.Data
 {
     public class GymCoreIdentityDbContext : IdentityDbContext
     {
