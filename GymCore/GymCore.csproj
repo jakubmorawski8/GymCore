@@ -1,33 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
-
-  <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Migrations\20210222172505_init.cs" />
-    <Compile Remove="Migrations\20210222172505_init.Designer.cs" />
-    <Compile Remove="Migrations\20210225163012_addAuth.cs" />
-    <Compile Remove="Migrations\20210225163012_addAuth.Designer.cs" />
-    <Compile Remove="Migrations\20210225164250_addAuth.cs" />
-    <Compile Remove="Migrations\20210225164250_addAuth.Designer.cs" />
-    <Compile Remove="Migrations\20210225164421_IdentityDBUser.cs" />
-    <Compile Remove="Migrations\20210225164421_IdentityDBUser.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.12" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.12" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.12">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.12">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.11" />
-  </ItemGroup>
-
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
 </Project>
