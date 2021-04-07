@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GymCore.Core.Entities
+﻿namespace GymCore.Core.Entities
 {
     public class ExerciseEntity : BaseEntity
     {

@@ -1,12 +1,10 @@
-﻿using GymCore.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using GymCore.Core.Entities;
 
 namespace GymCore.Core.Interfaces
 {
-    public interface IRepository<T> where T: BaseEntity
+    public interface IRepository<T> where T : BaseEntity
     {
         Task<T> GetByIdAsync<T>(int id);
         Task<List<T>> ListAsync<T>();

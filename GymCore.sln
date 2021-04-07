@@ -17,7 +17,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{B551CB76-A167-4B45-ABEA-D479C37A2011}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymCore.Core", "GymCore.Core\GymCore.Core.csproj", "{98DE3D0C-5410-4CE0-B2AE-E53A7DE8AC89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GymCore.Core", "GymCore.Core\GymCore.Core.csproj", "{98DE3D0C-5410-4CE0-B2AE-E53A7DE8AC89}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{15579842-9F09-4DAA-84C5-D29500B90B37}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
