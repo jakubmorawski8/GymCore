@@ -9,9 +9,7 @@ namespace GymCore.Infrastructure
         {
             services.AddEntityFrameworkNpgsql().AddDbContext<T>(options =>
                 options.UseNpgsql(connectionString,
-                x => x.MigrationsAssembly("GymCore.Infrastructure"))
-                );
+                x => x.MigrationsAssembly("GymCore.Infrastructure")));
         }
-
     }
 }
