@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 
-namespace GymCore.Core.Interfaces
+namespace GymCore.Application.Interfaces
 {
     public interface ISpecification<T>
     {

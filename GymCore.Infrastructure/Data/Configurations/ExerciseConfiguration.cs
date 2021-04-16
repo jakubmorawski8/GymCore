@@ -1,17 +1,17 @@
-﻿using GymCore.Core.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using GymCore.Domain.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GymCore.Infrastructure.Data.Configurations
 {
-    public class ExerciseConfiguration : IEntityTypeConfiguration<ExerciseEntity>
+    public class ExerciseConfiguration : BaseEntityConfiguration<WorkoutEntity>
     {
-        public void Configure(EntityTypeBuilder<ExerciseEntity> builder)
+        public override void ConfigureEntityProperties(EntityTypeBuilder<WorkoutEntity> builder)
         {
-
+            builder.Property(x => x.Name)
+                .HasMaxLength(60)
+                .IsRequired(true);
+            builder.Property(x => x.Description)
+                .HasMaxLength(1000);
         }
     }
 }

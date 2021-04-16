@@ -1,17 +1,14 @@
-﻿using GymCore.Core.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using GymCore.Domain.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GymCore.Infrastructure.Data.Configurations
 {
-    public class WorkoutAreaConfiguration : IEntityTypeConfiguration<WorkoutAreaEntity>
+    public class WorkoutAreaConfiguration : BaseEntityConfiguration<WorkoutAreaEntity>
     {
-        public void Configure(EntityTypeBuilder<WorkoutAreaEntity> builder)
+        public override void ConfigureEntityProperties(EntityTypeBuilder<WorkoutAreaEntity> builder)
         {
-
+            builder.HasOne(x => x.Workout);
+            builder.Property(x => x.QtyRepetitions).IsRequired(true);
         }
     }
 }

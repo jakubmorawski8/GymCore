@@ -1,10 +1,9 @@
-﻿using GymCore.Core.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
+using GymCore.Application.Interfaces;
 
-namespace GymCore.Core.Specification
+namespace GymCore.Application.Specification
 {
     public abstract class BaseSpecification<T> : ISpecification<T>
     {

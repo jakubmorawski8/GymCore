@@ -6,12 +6,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20210323171229_init.cs" />
-    <Compile Remove="Migrations\20210323171229_init.Designer.cs" />
+    <Compile Remove="Data\Migrations\**" />
+    <Compile Remove="Migrations\GymCoreIdentityDb\**" />
+    <EmbeddedResource Remove="Data\Migrations\**" />
+    <EmbeddedResource Remove="Migrations\GymCoreIdentityDb\**" />
+    <None Remove="Data\Migrations\**" />
+    <None Remove="Migrations\GymCoreIdentityDb\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.13" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="3.1.13" />
@@ -32,11 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GymCore.Core\GymCore.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
+    <ProjectReference Include="..\GymCore.Core\GymCore.Application.csproj" />
   </ItemGroup>
 
 </Project>

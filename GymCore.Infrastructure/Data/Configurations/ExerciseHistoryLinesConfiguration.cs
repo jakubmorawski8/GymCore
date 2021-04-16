@@ -1,17 +1,16 @@
-﻿using GymCore.Core.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using GymCore.Domain.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GymCore.Infrastructure.Data.Configurations
 {
-    public class ExerciseHistoryLinesConfiguration : IEntityTypeConfiguration<ExerciseHistoryLinesEntity>
+    public class ExerciseHistoryLinesConfiguration : BaseEntityConfiguration<ExerciseHistoryLinesEntity>
     {
-        public void Configure(EntityTypeBuilder<ExerciseHistoryLinesEntity> builder)
+        public override void ConfigureEntityProperties(EntityTypeBuilder<ExerciseHistoryLinesEntity> builder)
         {
-
+            builder.HasOne(x => x.ExerciseHistoryHeader);
+            builder.HasOne(x => x.Exercise);
+            builder.Property(x => x.Load).IsRequired(true);
+            builder.Property(x => x.QtyRepetitions).IsRequired(true);
         }
     }
 }

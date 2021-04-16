@@ -1,9 +1,6 @@
-﻿using GymCore.Core.Entities;
+﻿using GymCore.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GymCore.Infrastructure.Data.Configurations
 {
@@ -11,7 +8,13 @@ namespace GymCore.Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<UserWorkoutEntity> builder)
         {
-
+            builder.HasKey(x => new { x.UserId, x.WorkoutId });
+            builder.HasOne(x => x.User)
+                .WithMany(x => x.UserWorkouts)
+                .HasForeignKey(x => x.UserId);
+            builder.HasOne(x => x.Workout)
+                .WithMany(x => x.UserWorkouts)
+                .HasForeignKey(x => x.WorkoutId);
         }
     }
 }
