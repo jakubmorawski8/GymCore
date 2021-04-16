@@ -26,4 +26,9 @@
     <ProjectReference Include="..\GymCore.Domain\GymCore.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Events\" />
+    <Folder Include="Features\" />
+  </ItemGroup>
+
 </Project>
