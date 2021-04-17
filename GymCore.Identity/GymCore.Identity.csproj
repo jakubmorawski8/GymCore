@@ -9,11 +9,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GymCore.Application\GymCore.Application.csproj" />
+    <Folder Include="Models\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
+    <ProjectReference Include="..\GymCore.Application\GymCore.Application.csproj" />
   </ItemGroup>
 
 </Project>
