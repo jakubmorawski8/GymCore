@@ -1,5 +1,4 @@
-﻿using GymCore.Infrastructure;
-using GymCore.Infrastructure.Data;
+﻿using GymCore.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -22,13 +21,7 @@ namespace GymCore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
-            var csCoreDb = Configuration.GetConnectionString("GymCoreDBContext");
-            var csIdentityDb = Configuration.GetConnectionString("GymCoreIdentityDbContext");
-
-            services.AddDbContext<GymCoreDBContext>(csCoreDb);
-            services.AddDbContext<GymCoreIdentityDbContext>(csIdentityDb);
-
+            services.AddPersistenceServices(Configuration);
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<GymCoreDBContext>();
         }
 

@@ -27,8 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Events\" />
-    <Folder Include="Features\" />
+    <Folder Include="Requests\Workout\Commands\" />
   </ItemGroup>
 
 </Project>
