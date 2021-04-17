@@ -31,6 +31,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GymCore.Infrastructure\GymCore.Persistence.csproj" />
+    <ProjectReference Include="..\GymCore.Persistence\GymCore.Persistence.csproj" />
   </ItemGroup>
 
 
