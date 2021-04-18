@@ -2,16 +2,15 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using GymCore.Application.Interfaces;
-using GymCore.Domain.Entities;
 using MediatR;
 
 namespace GymCore.Application.Requests.Workout.Queries.GetWorkoutDetails
 {
     public class GetWorkoutDetailsQueryHandler : IRequestHandler<GetWorkoutDetailsQuery, WorkoutDetailsVm>
     {
-        private readonly IRepository<WorkoutEntity> _workoutRepository;
+        private readonly IWorkoutRepository _workoutRepository;
         private readonly IMapper _mapper;
-        public GetWorkoutDetailsQueryHandler(IRepository<WorkoutEntity> workoutRepository,
+        public GetWorkoutDetailsQueryHandler(IWorkoutRepository workoutRepository,
                                                 IMapper mapper)
         {
             _mapper = mapper;

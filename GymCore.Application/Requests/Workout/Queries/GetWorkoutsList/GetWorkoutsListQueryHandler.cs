@@ -11,9 +11,9 @@ namespace GymCore.Application.Requests.Workout.Queries.GetWorkoutsList
 {
     public class GetWorkoutsListQueryHandler : IRequestHandler<GetWorkoutsListQuery, List<WorkoutListVm>>
     {
-        private readonly IRepository<WorkoutEntity> _workoutRepository;
+        private readonly IWorkoutRepository _workoutRepository;
         private readonly IMapper _mapper;
-        public GetWorkoutsListQueryHandler(IMapper mapper, IRepository<WorkoutEntity> workoutRepository)
+        public GetWorkoutsListQueryHandler(IMapper mapper, IWorkoutRepository workoutRepository)
         {
             _mapper = mapper;
             _workoutRepository = workoutRepository;
