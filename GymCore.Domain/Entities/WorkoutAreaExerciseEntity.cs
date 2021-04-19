@@ -1,4 +1,4 @@
-﻿namespace GymCore.Domain.Entities
+namespace GymCore.Domain.Entities
 {
     public class WorkoutAreaExerciseEntity : BaseEntity
     {

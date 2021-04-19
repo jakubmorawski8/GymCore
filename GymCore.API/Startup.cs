@@ -1,4 +1,4 @@
-﻿using GymCore.Application;
+using GymCore.Application;
 using GymCore.Identity;
 using GymCore.Persistence;
 using Microsoft.AspNetCore.Builder;
