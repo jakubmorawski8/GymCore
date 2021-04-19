@@ -15,11 +15,13 @@ namespace GymCore.Identity
                 );
         }
 
-        public static void AddIdentityServices(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddIdentityServices(this IServiceCollection services, IConfiguration configuration)
         {
             var csIdentityDb = configuration.GetConnectionString("GymCoreIdentityDbContext");
             services.AddDbContext<GymCoreIdentityDbContext>(csIdentityDb);
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<GymCoreIdentityDbContext>();
+
+            return services;
         }
     }
 }
