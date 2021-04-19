@@ -30,7 +30,7 @@ namespace GymCore.Application.UnitTests.Categories.Queries
         }
 
         [Fact]
-        public async Task GetWorkountsListTest()
+        public async Task GetWorkoutsListTest()
         {
             var handler = new GetWorkoutsListQueryHandler(_mapper, _mockWorkoutEntityRepository.Object);
 
