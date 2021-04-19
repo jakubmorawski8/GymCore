@@ -4,7 +4,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using GymCore.Application.Interfaces;
-using GymCore.Domain.Entities;
 using MediatR;
 
 namespace GymCore.Application.Requests.Workout.Queries.GetWorkoutsList
