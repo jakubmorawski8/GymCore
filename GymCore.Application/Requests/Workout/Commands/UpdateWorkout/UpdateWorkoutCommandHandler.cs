@@ -22,7 +22,6 @@ namespace GymCore.Application.Requests.Workout.Commands.UpdateWorkout
             _mapper.Map(request, workoutToUpdate, typeof(UpdateWorkoutCommand), typeof(WorkoutEntity));
             await _workoutRepository.UpdateAsync(workoutToUpdate);
             return Unit.Value;
-
         }
     }
 }

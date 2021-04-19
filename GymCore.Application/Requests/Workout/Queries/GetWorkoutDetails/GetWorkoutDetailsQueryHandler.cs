@@ -19,14 +19,14 @@ namespace GymCore.Application.Requests.Workout.Queries.GetWorkoutDetails
 
         public async Task<WorkoutDetailsVm> Handle(GetWorkoutDetailsQuery request, CancellationToken cancellationToken)
         {
-            var @event = await _workoutRepository.GetByIdAsync(request.Id);
-            var eventDetailDto = _mapper.Map<WorkoutDetailsVm>(@event);
+            var workout = await _workoutRepository.GetByIdAsync(request.Id);
+            var workoutDetailDto = _mapper.Map<WorkoutDetailsVm>(workout);
 
-            var user = _mapper.Map<WorkoutUserDto>(@event.CreatedBy);
+            var user = _mapper.Map<WorkoutUserDto>(workout.CreatedBy);
 
-            eventDetailDto.WorkoutUserDto = user;
+            workoutDetailDto.WorkoutUserDto = user;
 
-            return eventDetailDto;
+            return workoutDetailDto;
         }
     }
 }

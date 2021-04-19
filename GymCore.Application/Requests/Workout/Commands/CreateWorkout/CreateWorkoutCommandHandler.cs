@@ -18,8 +18,8 @@ namespace GymCore.Application.Requests.Workout.Commands.CreateWorkout
         }
         public async Task<long> Handle(CreateWorkoutCommand request, CancellationToken cancellationToken)
         {
-            var @workout = _mapper.Map<WorkoutEntity>(request);
-            @workout = await _workoutRepository.AddAsync(@workout);
+            var workout = _mapper.Map<WorkoutEntity>(request);
+            workout = await _workoutRepository.AddAsync(workout);
             return workout.Id;
         }
     }
