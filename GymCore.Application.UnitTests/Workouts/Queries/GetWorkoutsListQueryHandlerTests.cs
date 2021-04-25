@@ -10,7 +10,7 @@ using Moq;
 using Shouldly;
 using Xunit;
 
-namespace GymCore.Application.UnitTests.Categories.Queries
+namespace GymCore.Application.UnitTests.Workouts.Queries
 {
     public class GetWorkoutsListQueryHandlerTests
     {
