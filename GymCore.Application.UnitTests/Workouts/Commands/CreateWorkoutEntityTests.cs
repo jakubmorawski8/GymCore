@@ -9,7 +9,7 @@ using Moq;
 using Shouldly;
 using Xunit;
 
-namespace GymCore.Application.UnitTests.Categories.Commands
+namespace GymCore.Application.UnitTests.Workouts.Commands
 {
     public class CreateWorkoutEntityTests
     {
