@@ -26,6 +26,13 @@ namespace GymCore.Persistence
             #region Repositories
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IWorkoutRepository, WorkoutRepository>();
+            services.AddScoped<IExerciseHistoryHeaderRepository, ExerciseHistoryHeaderRepository>();
+            services.AddScoped<IExerciseHistoryLinesRepository, ExerciseHistoryLinesRepository>();
+            services.AddScoped<IExerciseRepository, ExerciseRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserWorkoutRepository, UserWorkoutRepository>();
+            services.AddScoped<IWorkoutAreaExerciseRepository, WorkoutAreaExerciseRepository>();
+            services.AddScoped<IWorkoutAreaRepository, WorkoutAreaRepository>();
             #endregion Repositories
 
             return services;
