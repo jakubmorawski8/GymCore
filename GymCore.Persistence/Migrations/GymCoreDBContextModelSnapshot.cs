@@ -21,10 +21,9 @@ namespace GymCore.Persistence.Migrations
 
             modelBuilder.Entity("GymCore.Domain.Entities.ExerciseEntity", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp without time zone");
@@ -45,10 +44,9 @@ namespace GymCore.Persistence.Migrations
 
             modelBuilder.Entity("GymCore.Domain.Entities.ExerciseHistoryHeaderEntity", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp without time zone");
@@ -64,11 +62,11 @@ namespace GymCore.Persistence.Migrations
                     b.Property<DateTime>("StartDateTime")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<long?>("UserId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uuid");
 
-                    b.Property<long?>("WorkoutId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("WorkoutId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
@@ -81,19 +79,18 @@ namespace GymCore.Persistence.Migrations
 
             modelBuilder.Entity("GymCore.Domain.Entities.ExerciseHistoryLinesEntity", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<long?>("ExerciseHistoryHeaderId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("ExerciseHistoryHeaderId")
+                        .HasColumnType("uuid");
 
-                    b.Property<long?>("ExerciseId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("ExerciseId")
+                        .HasColumnType("uuid");
 
                     b.Property<double>("Load")
                         .HasColumnType("double precision");
@@ -117,10 +114,9 @@ namespace GymCore.Persistence.Migrations
 
             modelBuilder.Entity("GymCore.Domain.Entities.UserEntity", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("uuid");
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
@@ -177,17 +173,17 @@ namespace GymCore.Persistence.Migrations
 
             modelBuilder.Entity("GymCore.Domain.Entities.UserWorkoutEntity", b =>
                 {
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
 
-                    b.Property<long>("WorkoutId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("WorkoutId")
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<long>("Id")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("timestamp without time zone");
@@ -201,10 +197,9 @@ namespace GymCore.Persistence.Migrations
 
             modelBuilder.Entity("GymCore.Domain.Entities.WorkoutAreaEntity", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp without time zone");
@@ -217,8 +212,8 @@ namespace GymCore.Persistence.Migrations
                     b.Property<int>("QtyRepetitions")
                         .HasColumnType("integer");
 
-                    b.Property<long?>("WorkoutId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("WorkoutId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
@@ -229,16 +224,15 @@ namespace GymCore.Persistence.Migrations
 
             modelBuilder.Entity("GymCore.Domain.Entities.WorkoutAreaExerciseEntity", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<long>("ExerciseId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("ExerciseId")
+                        .HasColumnType("uuid");
 
                     b.Property<double>("Load")
                         .HasColumnType("double precision");
@@ -251,8 +245,8 @@ namespace GymCore.Persistence.Migrations
                     b.Property<int>("QtyRepetitions")
                         .HasColumnType("integer");
 
-                    b.Property<long>("WorkoutAreaId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("WorkoutAreaId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
@@ -265,13 +259,12 @@ namespace GymCore.Persistence.Migrations
 
             modelBuilder.Entity("GymCore.Domain.Entities.WorkoutEntity", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("uuid");
 
-                    b.Property<long?>("CreatedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("CreatedById")
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp without time zone");

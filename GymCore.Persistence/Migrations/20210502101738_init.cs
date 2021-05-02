@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace GymCore.Persistence.Migrations
 {
@@ -12,8 +11,7 @@ namespace GymCore.Persistence.Migrations
                 name: "ExerciseEntity",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: true),
@@ -28,8 +26,7 @@ namespace GymCore.Persistence.Migrations
                 name: "UserEntity",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     UserName = table.Column<string>(nullable: true),
                     NormalizedUserName = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
@@ -43,48 +40,27 @@ namespace GymCore.Persistence.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserEntity", x => x.Id);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "WorkoutEntity",
-                columns: table => new
-                {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    ModifiedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "now()"),
-                    Name = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    CreatedById = table.Column<long>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_WorkoutEntity", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_WorkoutEntity_UserEntity_CreatedById",
-                        column: x => x.CreatedById,
-                        principalTable: "UserEntity",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
+           
             migrationBuilder.CreateTable(
                 name: "ExerciseHistoryHeaderEntity",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "now()"),
-                    WorkoutId = table.Column<long>(nullable: true),
+                    WorkoutId = table.Column<Guid>(nullable: true),
                     StartDateTime = table.Column<DateTime>(nullable: false),
                     EndDateTime = table.Column<DateTime>(nullable: false),
-                    UserId = table.Column<long>(nullable: true)
+                    UserId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -104,41 +80,13 @@ namespace GymCore.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserWorkoutEntity",
-                columns: table => new
-                {
-                    UserId = table.Column<long>(nullable: false),
-                    WorkoutId = table.Column<long>(nullable: false),
-                    Id = table.Column<long>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    ModifiedDate = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserWorkoutEntity", x => new { x.UserId, x.WorkoutId });
-                    table.ForeignKey(
-                        name: "FK_UserWorkoutEntity_UserEntity_UserId",
-                        column: x => x.UserId,
-                        principalTable: "UserEntity",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_UserWorkoutEntity_WorkoutEntity_WorkoutId",
-                        column: x => x.WorkoutId,
-                        principalTable: "WorkoutEntity",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "WorkoutAreaEntity",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "now()"),
-                    WorkoutId = table.Column<long>(nullable: true),
+                    WorkoutId = table.Column<Guid>(nullable: true),
                     QtyRepetitions = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -156,12 +104,11 @@ namespace GymCore.Persistence.Migrations
                 name: "ExerciseHistoryLinesEntity",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "now()"),
-                    ExerciseHistoryHeaderId = table.Column<long>(nullable: true),
-                    ExerciseId = table.Column<long>(nullable: true),
+                    ExerciseHistoryHeaderId = table.Column<Guid>(nullable: true),
+                    ExerciseId = table.Column<Guid>(nullable: true),
                     Load = table.Column<double>(nullable: false),
                     QtyRepetitions = table.Column<int>(nullable: false)
                 },
@@ -186,12 +133,11 @@ namespace GymCore.Persistence.Migrations
                 name: "WorkoutAreaExerciseEntity",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "now()"),
-                    WorkoutAreaId = table.Column<long>(nullable: false),
-                    ExerciseId = table.Column<long>(nullable: false),
+                    WorkoutAreaId = table.Column<Guid>(nullable: false),
+                    ExerciseId = table.Column<Guid>(nullable: false),
                     Load = table.Column<double>(nullable: false),
                     QtyRepetitions = table.Column<int>(nullable: false)
                 },
@@ -251,11 +197,6 @@ namespace GymCore.Persistence.Migrations
                 name: "IX_WorkoutAreaExerciseEntity_WorkoutAreaId",
                 table: "WorkoutAreaExerciseEntity",
                 column: "WorkoutAreaId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WorkoutEntity_CreatedById",
-                table: "WorkoutEntity",
-                column: "CreatedById");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -1,4 +1,5 @@
-﻿using GymCore.Application.Interfaces;
+﻿using System.Threading.Tasks;
+using GymCore.Application.Interfaces.Persistence;
 using GymCore.Domain.Entities;
 
 namespace GymCore.Persistence.Repositories
@@ -8,6 +9,11 @@ namespace GymCore.Persistence.Repositories
         public WorkoutRepository(GymCoreDBContext dbContext) : base(dbContext)
         {
 
+        }
+
+        public Task<bool> IsWorkoutNameUnitqueForUser(string workoutName, long userId)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

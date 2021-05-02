@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using System;
+using MediatR;
 
 namespace GymCore.Application.Requests.Workout.Commands.CreateWorkout
 {
-    public class CreateWorkoutCommand : IRequest<long>
+    public class CreateWorkoutCommand : IRequest<Guid>
     {
         public string Name { get; set; }
         public string Description { get; set; }

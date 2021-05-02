@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using GymCore.Application.Interfaces;
+using GymCore.Application.Interfaces.Persistence;
 using MediatR;
 
 namespace GymCore.Application.Requests.Workout.Queries.GetWorkoutsList

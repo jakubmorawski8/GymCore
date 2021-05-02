@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using GymCore.Application.Interfaces;
+using GymCore.Application.Interfaces.Persistence;
 
 namespace GymCore.Application.Specification
 {
