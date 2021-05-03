@@ -15,5 +15,11 @@ namespace GymCore.Persistence.Repositories
         {
             throw new System.NotImplementedException();
         }
+
+        public Task<bool> IsWorkoutNameUnitqueForUser(string workoutName, long userId)
+        {
+            var matches = _dbContext.Workouts.Any(w => w.CreatedBy.Id == userId && w.Name == workoutName);
+            return Task.FromResult(matches);
+        }
     }
 }
