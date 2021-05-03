@@ -15,7 +15,7 @@ namespace GymCore.Application.Profiles
             CreateMap<WorkoutEntity, WorkoutDetailsVm>().ReverseMap();
             CreateMap<UserEntity, WorkoutUserDto>().ReverseMap();
             CreateMap<CreateWorkoutCommand, WorkoutEntity>().ReverseMap()
-                .ForMember(dest => dest.Owner,
+                .ForMember(dest => dest.CreatedBy,
                             opt => opt.MapFrom(src => src.CreatedBy));
             CreateMap<UpdateWorkoutCommand, WorkoutEntity>().ReverseMap();
         }

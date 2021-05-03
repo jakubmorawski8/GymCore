@@ -1,13 +1,14 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using GymCore.Application.Interfaces;
+using GymCore.Application.Interfaces.Persistence;
 using GymCore.Domain.Entities;
 using MediatR;
 
 namespace GymCore.Application.Requests.Workout.Commands.CreateWorkout
 {
-    public class CreateWorkoutCommandHandler : IRequestHandler<CreateWorkoutCommand, long>
+    public class CreateWorkoutCommandHandler : IRequestHandler<CreateWorkoutCommand, Guid>
     {
         private readonly IWorkoutRepository _workoutRepository;
         private readonly IMapper _mapper;
@@ -16,7 +17,7 @@ namespace GymCore.Application.Requests.Workout.Commands.CreateWorkout
             _workoutRepository = workoutRepository;
             _mapper = mapper;
         }
-        public async Task<long> Handle(CreateWorkoutCommand request, CancellationToken cancellationToken)
+        public async Task<Guid> Handle(CreateWorkoutCommand request, CancellationToken cancellationToken)
         {
             var workout = _mapper.Map<WorkoutEntity>(request);
             workout = await _workoutRepository.AddAsync(workout);

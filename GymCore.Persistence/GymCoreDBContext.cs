@@ -1,4 +1,5 @@
-﻿using GymCore.Persistence.Configurations;
+﻿using GymCore.Domain.Entities;
+using GymCore.Persistence.Configurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace GymCore.Persistence
@@ -9,6 +10,8 @@ namespace GymCore.Persistence
         {
 
         }
+
+        public DbSet<WorkoutEntity> Workouts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

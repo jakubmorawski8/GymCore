@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using GymCore.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,7 +20,9 @@ namespace GymCore.Identity
         {
             var csIdentityDb = configuration.GetConnectionString("GymCoreIdentityDbContext");
             services.AddDbContext<GymCoreIdentityDbContext>(csIdentityDb);
-            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<GymCoreIdentityDbContext>();
+            services.AddIdentity<UserEntity, RoleEntity>()
+                .AddEntityFrameworkStores<GymCoreIdentityDbContext>()
+                .AddDefaultTokenProviders();
 
             return services;
         }
