@@ -1,4 +1,4 @@
-﻿using GymCore.Application.Interfaces;
+﻿using GymCore.Application.Interfaces.Persistence;
 using GymCore.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

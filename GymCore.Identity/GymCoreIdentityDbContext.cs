@@ -1,11 +1,12 @@
-﻿using GymCore.Domain.Entities;
+﻿using System;
+using GymCore.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace GymCore.Identity
 {
-    public class GymCoreIdentityDbContext : IdentityDbContext<UserEntity, IdentityRole<long>, long>
+    public class GymCoreIdentityDbContext : IdentityDbContext<UserEntity, IdentityRole<Guid>, Guid>
     {
         private readonly DbContextOptions _options;
 

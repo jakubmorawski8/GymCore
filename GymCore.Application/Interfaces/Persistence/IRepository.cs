@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace GymCore.Application.Interfaces
+namespace GymCore.Application.Interfaces.Persistence
 {
     public interface IRepository<T> where T : class
     {
-        Task<T> GetByIdAsync(long id);
+        Task<T> GetByIdAsync(Guid id);
         Task<IReadOnlyList<T>> ListAllAsync();
         Task<T> AddAsync(T entity);
         Task UpdateAsync(T entity);
