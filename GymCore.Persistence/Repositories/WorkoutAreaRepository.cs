@@ -1,4 +1,4 @@
-﻿using GymCore.Application.Interfaces;
+﻿using GymCore.Application.Interfaces.Persistence;
 using GymCore.Domain.Entities;
 
 namespace GymCore.Persistence.Repositories
