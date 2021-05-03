@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using GymCore.Application.Interfaces.Persistence;
 using GymCore.Domain.Entities;
 
@@ -11,12 +13,7 @@ namespace GymCore.Persistence.Repositories
 
         }
 
-        public Task<bool> IsWorkoutNameUnitqueForUser(string workoutName, long userId)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<bool> IsWorkoutNameUnitqueForUser(string workoutName, long userId)
+        public Task<bool> IsWorkoutNameUnitqueForUser(string workoutName, Guid userId)
         {
             var matches = _dbContext.Workouts.Any(w => w.CreatedBy.Id == userId && w.Name == workoutName);
             return Task.FromResult(matches);
