@@ -1,11 +1,17 @@
-﻿using FluentValidation;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using FluentValidation;
+using GymCore.Application.Interfaces.Persistence;
 
 namespace GymCore.Application.Requests.Workout.Commands.CreateWorkout
 {
     public class CreateWorkoutCommandValidator : AbstractValidator<CreateWorkoutCommand>
     {
-        public CreateWorkoutCommandValidator()
+        private readonly IWorkoutRepository _workoutRepository;
+        public CreateWorkoutCommandValidator(IWorkoutRepository workoutRepository)
         {
+            _workoutRepository = workoutRepository;
+
             RuleFor(p => p.Name)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
@@ -13,6 +19,16 @@ namespace GymCore.Application.Requests.Workout.Commands.CreateWorkout
 
             RuleFor(p => p.Description)
                 .MaximumLength(1000).WithMessage("{PropertyName} must not exceed 1000 characters.");
+
+            RuleFor(p => p)
+                .MustAsync(WorkoutNameUniqueForUser)
+                .WithMessage("Workout with the same name already exists for current user");
+        }
+
+
+        private async Task<bool> WorkoutNameUniqueForUser(CreateWorkoutCommand e, CancellationToken token)
+        {
+            return !(await _workoutRepository.IsWorkoutNameUnitqueForUser(e.Name, e.CreatedBy));
         }
 
 
