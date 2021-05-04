@@ -49,7 +49,28 @@ namespace GymCore.Persistence.Migrations
                     table.PrimaryKey("PK_UserEntity", x => x.Id);
                 });
 
-           
+            migrationBuilder.CreateTable(
+                name: "Workouts",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    ModifiedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "now()"),
+                    Name = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    CreatedById = table.Column<Guid>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Workouts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Workouts_UserEntity_CreatedById",
+                        column: x => x.CreatedById,
+                        principalTable: "UserEntity",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateTable(
                 name: "ExerciseHistoryHeaderEntity",
                 columns: table => new
@@ -72,11 +93,38 @@ namespace GymCore.Persistence.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ExerciseHistoryHeaderEntity_WorkoutEntity_WorkoutId",
+                        name: "FK_ExerciseHistoryHeaderEntity_Workouts_WorkoutId",
                         column: x => x.WorkoutId,
-                        principalTable: "WorkoutEntity",
+                        principalTable: "Workouts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserWorkoutEntity",
+                columns: table => new
+                {
+                    UserId = table.Column<Guid>(nullable: false),
+                    WorkoutId = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    ModifiedDate = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserWorkoutEntity", x => new { x.UserId, x.WorkoutId });
+                    table.ForeignKey(
+                        name: "FK_UserWorkoutEntity_UserEntity_UserId",
+                        column: x => x.UserId,
+                        principalTable: "UserEntity",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserWorkoutEntity_Workouts_WorkoutId",
+                        column: x => x.WorkoutId,
+                        principalTable: "Workouts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -93,9 +141,9 @@ namespace GymCore.Persistence.Migrations
                 {
                     table.PrimaryKey("PK_WorkoutAreaEntity", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_WorkoutAreaEntity_WorkoutEntity_WorkoutId",
+                        name: "FK_WorkoutAreaEntity_Workouts_WorkoutId",
                         column: x => x.WorkoutId,
-                        principalTable: "WorkoutEntity",
+                        principalTable: "Workouts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -197,6 +245,11 @@ namespace GymCore.Persistence.Migrations
                 name: "IX_WorkoutAreaExerciseEntity_WorkoutAreaId",
                 table: "WorkoutAreaExerciseEntity",
                 column: "WorkoutAreaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Workouts_CreatedById",
+                table: "Workouts",
+                column: "CreatedById");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -220,7 +273,7 @@ namespace GymCore.Persistence.Migrations
                 name: "WorkoutAreaEntity");
 
             migrationBuilder.DropTable(
-                name: "WorkoutEntity");
+                name: "Workouts");
 
             migrationBuilder.DropTable(
                 name: "UserEntity");

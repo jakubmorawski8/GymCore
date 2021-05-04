@@ -177,34 +177,6 @@ namespace GymCore.Identity.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "UserWorkoutEntity",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    ModifiedDate = table.Column<DateTime>(nullable: false),
-                    UserId1 = table.Column<Guid>(nullable: true),
-                    UserId = table.Column<long>(nullable: false),
-                    WorkoutId = table.Column<long>(nullable: false),
-                    WorkoutId1 = table.Column<Guid>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserWorkoutEntity", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_UserWorkoutEntity_AspNetUsers_UserId1",
-                        column: x => x.UserId1,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_UserWorkoutEntity_WorkoutEntity_WorkoutId1",
-                        column: x => x.WorkoutId1,
-                        principalTable: "WorkoutEntity",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -244,14 +216,9 @@ namespace GymCore.Identity.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserWorkoutEntity_UserId1",
+                name: "IX_UserWorkoutEntity_UserId",
                 table: "UserWorkoutEntity",
-                column: "UserId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserWorkoutEntity_WorkoutId1",
-                table: "UserWorkoutEntity",
-                column: "WorkoutId1");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_WorkoutEntity_CreatedById",

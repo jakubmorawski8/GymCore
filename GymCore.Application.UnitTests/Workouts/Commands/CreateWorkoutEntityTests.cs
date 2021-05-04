@@ -1,7 +1,8 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using GymCore.Application.Interfaces;
+using GymCore.Application.Interfaces.Persistence;
 using GymCore.Application.Profiles;
 using GymCore.Application.Requests.Workout.Commands.CreateWorkout;
 using GymCore.Application.UnitTests.Mocks;
@@ -32,12 +33,12 @@ namespace GymCore.Application.UnitTests.Workouts.Commands
         public async Task Handle_ValidWorkout_AddedToWorkoutsRepository()
         {
             var handler = new CreateWorkoutCommandHandler(_mockWorkoutEntityRepository.Object, _mapper);
-
+            var createdByGuid = Guid.Parse("{9e1eaff0-0bd2-427b-a8e3-fe7fd4d78ae3}");
             await handler.Handle(new CreateWorkoutCommand()
             {
                 Name = "Test workout",
                 Description = "Test description",
-                Owner = "Test owner"
+                CreatedBy = createdByGuid
             },
             CancellationToken.None);
 
