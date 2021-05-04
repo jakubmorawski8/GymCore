@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using GymCore.Application.Interfaces;
+using GymCore.Application.Interfaces.Persistence;
 using GymCore.Application.Profiles;
 using GymCore.Application.Requests.Workout.Queries.GetWorkoutsList;
 using GymCore.Application.UnitTests.Mocks;
