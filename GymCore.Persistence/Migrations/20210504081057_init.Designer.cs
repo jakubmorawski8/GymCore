@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GymCore.Persistence.Migrations
 {
     [DbContext(typeof(GymCoreDBContext))]
-    [Migration("20210502101738_init")]
+    [Migration("20210504081057_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -286,7 +286,7 @@ namespace GymCore.Persistence.Migrations
 
                     b.HasIndex("CreatedById");
 
-                    b.ToTable("WorkoutEntity");
+                    b.ToTable("Workouts");
                 });
 
             modelBuilder.Entity("GymCore.Domain.Entities.ExerciseHistoryHeaderEntity", b =>
