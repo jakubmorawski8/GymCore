@@ -11,7 +11,7 @@ namespace GymCore.Application.UnitTests.Mocks
         public static Mock<IWorkoutRepository> GetWorkoutRepository()
         {
             var userEntity = new UserEntity();
-            var workout1Gruid = Guid.Parse("{b7ebdbf9-8e89-464a-b288-1b4b161f713f}");
+            var workout1Guid = Guid.Parse("{b7ebdbf9-8e89-464a-b288-1b4b161f713f}");
             var workout2Gruid = Guid.Parse("{5791932e-aaa7-4d92-8c04-35717f30d201}");
 
             var workoutEntities = new List<WorkoutEntity>()
