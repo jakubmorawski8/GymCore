@@ -32,7 +32,7 @@ namespace GymCore.Application.UnitTests.Mocks
                     CreatedDate = DateTime.MinValue,
                     Description = "Test description",
                     ModifiedDate = DateTime.MinValue,
-                    Id = workout2Gruid,
+                    Id = workout2Guid,
                     Name = "Test name",
                     UserWorkouts = new List<UserWorkoutEntity>()
                 }
