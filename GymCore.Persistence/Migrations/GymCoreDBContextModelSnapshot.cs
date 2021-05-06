@@ -284,7 +284,7 @@ namespace GymCore.Persistence.Migrations
 
                     b.HasIndex("CreatedById");
 
-                    b.ToTable("WorkoutEntity");
+                    b.ToTable("Workouts");
                 });
 
             modelBuilder.Entity("GymCore.Domain.Entities.ExerciseHistoryHeaderEntity", b =>

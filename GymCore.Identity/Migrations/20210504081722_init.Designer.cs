@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GymCore.Identity.Migrations
 {
     [DbContext(typeof(GymCoreIdentityDbContext))]
-    [Migration("20210502100519_init")]
+    [Migration("20210504081722_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -104,23 +104,17 @@ namespace GymCore.Identity.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<Guid?>("UserId1")
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
 
-                    b.Property<long>("WorkoutId")
-                        .HasColumnType("bigint");
-
-                    b.Property<Guid?>("WorkoutId1")
+                    b.Property<Guid>("WorkoutId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
-                    b.HasIndex("WorkoutId1");
+                    b.HasIndex("WorkoutId");
 
                     b.ToTable("UserWorkoutEntity");
                 });
@@ -285,11 +279,15 @@ namespace GymCore.Identity.Migrations
                 {
                     b.HasOne("GymCore.Domain.Entities.UserEntity", "User")
                         .WithMany("UserWorkouts")
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("GymCore.Domain.Entities.WorkoutEntity", "Workout")
                         .WithMany("UserWorkouts")
-                        .HasForeignKey("WorkoutId1");
+                        .HasForeignKey("WorkoutId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("GymCore.Domain.Entities.WorkoutEntity", b =>
