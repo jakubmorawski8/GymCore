@@ -5,7 +5,7 @@ namespace GymCore.Persistence.Repositories
 {
     public class WorkoutAreaExerciseRepository : BaseRepository<WorkoutAreaExerciseEntity>, IWorkoutAreaExerciseRepository
     {
-        public WorkoutAreaExerciseRepository(GymCoreDBContext dbContext) : base(dbContext)
+        public WorkoutAreaExerciseRepository(GymCoreDbContext dbContext) : base(dbContext)
         {
         }
     }

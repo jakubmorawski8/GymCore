@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GymCore.Persistence
 {
-    public class GymCoreDBContext : DbContext
+    public class GymCoreDbContext : DbContext
     {
-        public GymCoreDBContext(DbContextOptions<GymCoreDBContext> options) : base(options)
+        public GymCoreDbContext(DbContextOptions<GymCoreDbContext> options) : base(options)
         {
 
         }

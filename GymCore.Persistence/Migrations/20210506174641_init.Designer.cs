@@ -9,8 +9,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace GymCore.Persistence.Migrations
 {
-    [DbContext(typeof(GymCoreDBContext))]
-    [Migration("20210504081057_init")]
+    [DbContext(typeof(GymCoreDbContext))]
+    [Migration("20210506174641_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,15 +64,13 @@ namespace GymCore.Persistence.Migrations
                     b.Property<DateTime>("StartDateTime")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<Guid?>("UserId")
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
 
                     b.Property<Guid?>("WorkoutId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.HasIndex("WorkoutId");
 
@@ -112,65 +110,6 @@ namespace GymCore.Persistence.Migrations
                     b.HasIndex("ExerciseId");
 
                     b.ToTable("ExerciseHistoryLinesEntity");
-                });
-
-            modelBuilder.Entity("GymCore.Domain.Entities.UserEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasColumnType("text");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("text");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UserEntity");
                 });
 
             modelBuilder.Entity("GymCore.Domain.Entities.UserWorkoutEntity", b =>
@@ -265,7 +204,7 @@ namespace GymCore.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("CreatedById")
+                    b.Property<Guid>("CreatedBy")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedDate")
@@ -284,17 +223,11 @@ namespace GymCore.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CreatedById");
-
                     b.ToTable("Workouts");
                 });
 
             modelBuilder.Entity("GymCore.Domain.Entities.ExerciseHistoryHeaderEntity", b =>
                 {
-                    b.HasOne("GymCore.Domain.Entities.UserEntity", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
                     b.HasOne("GymCore.Domain.Entities.WorkoutEntity", "Workout")
                         .WithMany()
                         .HasForeignKey("WorkoutId");
@@ -313,12 +246,6 @@ namespace GymCore.Persistence.Migrations
 
             modelBuilder.Entity("GymCore.Domain.Entities.UserWorkoutEntity", b =>
                 {
-                    b.HasOne("GymCore.Domain.Entities.UserEntity", "User")
-                        .WithMany("UserWorkouts")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("GymCore.Domain.Entities.WorkoutEntity", "Workout")
                         .WithMany("UserWorkouts")
                         .HasForeignKey("WorkoutId")
@@ -346,13 +273,6 @@ namespace GymCore.Persistence.Migrations
                         .HasForeignKey("WorkoutAreaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("GymCore.Domain.Entities.WorkoutEntity", b =>
-                {
-                    b.HasOne("GymCore.Domain.Entities.UserEntity", "CreatedBy")
-                        .WithMany()
-                        .HasForeignKey("CreatedById");
                 });
 #pragma warning restore 612, 618
         }

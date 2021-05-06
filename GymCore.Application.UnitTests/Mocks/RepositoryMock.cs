@@ -10,7 +10,7 @@ namespace GymCore.Application.UnitTests.Mocks
     {
         public static Mock<IWorkoutRepository> GetWorkoutRepository()
         {
-            var userEntity = new UserEntity();
+            var userEntity = new UserEntity() { Id = Guid.Parse("{c3ebdbc9-8e89-464a-b288-1b4b161f713f}") };
             var workout1Guid = Guid.Parse("{b7ebdbf9-8e89-464a-b288-1b4b161f713f}");
             var workout2Guid = Guid.Parse("{5791932e-aaa7-4d92-8c04-35717f30d201}");
 
@@ -18,7 +18,7 @@ namespace GymCore.Application.UnitTests.Mocks
             {
                 new WorkoutEntity
                 {
-                    CreatedBy = userEntity,
+                    CreatedBy = userEntity.Id,
                     CreatedDate = DateTime.MinValue,
                     Description = "Test description",
                     ModifiedDate = DateTime.MinValue,
@@ -28,7 +28,7 @@ namespace GymCore.Application.UnitTests.Mocks
                 },
                  new WorkoutEntity
                 {
-                    CreatedBy = userEntity,
+                    CreatedBy = userEntity.Id,
                     CreatedDate = DateTime.MinValue,
                     Description = "Test description",
                     ModifiedDate = DateTime.MinValue,

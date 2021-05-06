@@ -11,7 +11,6 @@ namespace GymCore.Persistence.Configurations
                 .IsRequired(true);
             builder.Property(x => x.EndDateTime)
                 .IsRequired(true);
-            builder.HasOne(x => x.User);
             builder.HasOne(x => x.Workout);
         }
     }
