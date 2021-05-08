@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using GymCore.Application.Requests.Exercise.Commands.CreateExercise;
+using GymCore.Application.Requests.Exercise.Queries.GetExerciseDetails;
 using GymCore.Application.Requests.Workout.Commands.CreateWorkout;
 using GymCore.Application.Requests.Workout.Commands.UpdateWorkout;
 using GymCore.Application.Requests.Workout.Queries.GetWorkoutDetails;
@@ -11,6 +13,7 @@ namespace GymCore.Application.Profiles
     {
         public MappingProfile()
         {
+            #region Workout
             CreateMap<WorkoutEntity, WorkoutListVm>().ReverseMap();
             CreateMap<WorkoutEntity, WorkoutDetailsVm>().ReverseMap();
             CreateMap<UserEntity, WorkoutUserDto>().ReverseMap();
@@ -18,6 +21,13 @@ namespace GymCore.Application.Profiles
                 .ForMember(dest => dest.CreatedBy,
                             opt => opt.MapFrom(src => src.CreatedBy));
             CreateMap<UpdateWorkoutCommand, WorkoutEntity>().ReverseMap();
+            #endregion Workout
+
+            #region
+            CreateMap<ExerciseDetailsVm, ExerciseEntity>().ReverseMap();
+            CreateMap<CreateExerciseCommand, ExerciseEntity>().ReverseMap();
+            CreateMap<UpdateWorkoutCommand, ExerciseEntity>().ReverseMap();
+            #endregion
         }
     }
 }

@@ -11,7 +11,8 @@ namespace GymCore.Persistence
 
         }
 
-        public DbSet<WorkoutEntity> Workouts { get; set; }
+        public DbSet<WorkoutEntity> Workout { get; set; }
+        public DbSet<UserWorkoutEntity> UserWorkout { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

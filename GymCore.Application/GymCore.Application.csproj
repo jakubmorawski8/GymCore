@@ -27,4 +27,10 @@
     <ProjectReference Include="..\GymCore.Domain\GymCore.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Requests\ExerciseHistoryHeader\Commands\CreateExerciseHistoryHeader%27\" />
+    <Folder Include="Requests\ExerciseHistoryHeader\Commands\" />
+    <Folder Include="Requests\Exercise\Queries\GetExerciseList\" />
+  </ItemGroup>
+
 </Project>
