@@ -9,9 +9,9 @@ namespace GymCore.Persistence.Repositories
 {
     public class BaseRepository<T> : IRepository<T> where T : class
     {
-        protected readonly GymCoreDBContext _dbContext;
+        protected readonly GymCoreDbContext _dbContext;
 
-        public BaseRepository(GymCoreDBContext dbContext)
+        public BaseRepository(GymCoreDbContext dbContext)
         {
             _dbContext = dbContext;
         }

@@ -12,7 +12,6 @@ namespace GymCore.Persistence.Configurations
                 .IsRequired(true);
             builder.Property(x => x.Description)
                 .HasMaxLength(1000);
-            builder.HasOne(x => x.CreatedBy);
         }
     }
 }

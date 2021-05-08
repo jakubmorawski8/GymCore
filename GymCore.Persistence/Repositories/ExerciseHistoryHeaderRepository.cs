@@ -5,7 +5,7 @@ namespace GymCore.Persistence.Repositories
 {
     public class ExerciseHistoryHeaderRepository : BaseRepository<ExerciseHistoryHeaderEntity>, IExerciseHistoryHeaderRepository
     {
-        public ExerciseHistoryHeaderRepository(GymCoreDBContext dbContext) : base(dbContext)
+        public ExerciseHistoryHeaderRepository(GymCoreDbContext dbContext) : base(dbContext)
         {
         }
     }

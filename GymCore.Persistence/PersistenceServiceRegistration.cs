@@ -20,7 +20,7 @@ namespace GymCore.Persistence
         {
             #region DbContexts
             var csCoreDb = configuration.GetConnectionString("GymCoreDBContext");
-            services.AddDbContext<GymCoreDBContext>(csCoreDb);
+            services.AddDbContext<GymCoreDbContext>(csCoreDb);
             #endregion DbContexts
 
             #region Repositories
@@ -29,7 +29,6 @@ namespace GymCore.Persistence
             services.AddScoped<IExerciseHistoryHeaderRepository, ExerciseHistoryHeaderRepository>();
             services.AddScoped<IExerciseHistoryLinesRepository, ExerciseHistoryLinesRepository>();
             services.AddScoped<IExerciseRepository, ExerciseRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserWorkoutRepository, UserWorkoutRepository>();
             services.AddScoped<IWorkoutAreaExerciseRepository, WorkoutAreaExerciseRepository>();
             services.AddScoped<IWorkoutAreaRepository, WorkoutAreaRepository>();

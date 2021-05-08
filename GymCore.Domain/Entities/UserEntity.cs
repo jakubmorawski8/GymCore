@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 
 namespace GymCore.Domain.Entities
@@ -8,6 +7,5 @@ namespace GymCore.Domain.Entities
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public IList<UserWorkoutEntity> UserWorkouts { get; set; }
     }
 }
