@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
+using GymCore.Application.Interfaces;
 using GymCore.Application.Interfaces.Persistence;
 
 namespace GymCore.Application.Requests.Workout.Commands.CreateWorkout
@@ -8,9 +9,11 @@ namespace GymCore.Application.Requests.Workout.Commands.CreateWorkout
     public class CreateWorkoutCommandValidator : AbstractValidator<CreateWorkoutCommand>
     {
         private readonly IWorkoutRepository _workoutRepository;
-        public CreateWorkoutCommandValidator(IWorkoutRepository workoutRepository)
+        private readonly ILoggedInUserService _loggedInUserService;
+        public CreateWorkoutCommandValidator(IWorkoutRepository workoutRepository,ILoggedInUserService loggedInUserService)
         {
             _workoutRepository = workoutRepository;
+            _loggedInUserService = loggedInUserService;
 
             RuleFor(p => p.Name)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
@@ -28,7 +31,7 @@ namespace GymCore.Application.Requests.Workout.Commands.CreateWorkout
 
         private async Task<bool> WorkoutNameUniqueForUser(CreateWorkoutCommand e, CancellationToken token)
         {
-            return !(await _workoutRepository.IsWorkoutNameUnitqueForUser(e.Name, e.CreatedBy));
+            return !(await _workoutRepository.IsWorkoutNameUnitqueForUser(e.Name, _loggedInUserService.UserId));
         }
 
 
