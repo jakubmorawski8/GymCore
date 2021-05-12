@@ -8,5 +8,6 @@ namespace GymCore.Domain.Entities
         public string Description { get; set; }
 
         public IList<WorkoutAreaExerciseEntity> WorkoutAreasExercise { get; set; }
+        public IList<ExerciseHistoryLinesEntity> ExerciseHistoryLines { get; set; }
     }
 }

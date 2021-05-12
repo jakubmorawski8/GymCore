@@ -28,7 +28,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GymCore.Identity", "GymCore
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GymCore.Persistence", "GymCore.Persistence\GymCore.Persistence.csproj", "{5C7CA55F-3A57-4F4E-BAA0-DA3B35406A1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymCore.Application.UnitTests", "GymCore.Application.UnitTests\GymCore.Application.UnitTests.csproj", "{FB3095D2-54B9-4DFC-AEB6-990EECBF750A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GymCore.Application.UnitTests", "GymCore.Application.UnitTests\GymCore.Application.UnitTests.csproj", "{FB3095D2-54B9-4DFC-AEB6-990EECBF750A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

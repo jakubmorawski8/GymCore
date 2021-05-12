@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using GymCore.Application.Requests.Exercise.Commands.CreateExercise;
 using GymCore.Application.Requests.Exercise.Queries.GetExerciseDetails;
+using GymCore.Application.Requests.Exercise.Queries.GetExerciseList;
 using GymCore.Application.Requests.Workout.Commands.CreateWorkout;
 using GymCore.Application.Requests.Workout.Commands.UpdateWorkout;
 using GymCore.Application.Requests.Workout.Queries.GetWorkoutDetails;
@@ -23,11 +24,12 @@ namespace GymCore.Application.Profiles
             CreateMap<UpdateWorkoutCommand, WorkoutEntity>().ReverseMap();
             #endregion Workout
 
-            #region
+            #region Exercise
             CreateMap<ExerciseDetailsVm, ExerciseEntity>().ReverseMap();
             CreateMap<CreateExerciseCommand, ExerciseEntity>().ReverseMap();
             CreateMap<UpdateWorkoutCommand, ExerciseEntity>().ReverseMap();
-            #endregion
+            CreateMap<ExerciseEntity, ExerciseListVm>().ReverseMap();
+            #endregion Exercise
         }
     }
 }

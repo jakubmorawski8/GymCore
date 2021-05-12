@@ -6,6 +6,6 @@ namespace GymCore.Application.Interfaces.Persistence
 {
     public interface IWorkoutRepository : IRepository<WorkoutEntity>
     {
-        Task<bool> IsWorkoutNameUnitqueForUser(string workoutName, Guid userId);
+        Task<bool> IsWorkoutNameUniqueForUser(string workoutName, Guid userId);
     }
 }

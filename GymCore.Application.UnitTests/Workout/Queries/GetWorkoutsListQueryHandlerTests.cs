@@ -10,7 +10,7 @@ using Moq;
 using Shouldly;
 using Xunit;
 
-namespace GymCore.Application.UnitTests.Workouts.Queries
+namespace GymCore.Application.UnitTests.Workout.Queries
 {
     public class GetWorkoutsListQueryHandlerTests
     {
@@ -19,7 +19,7 @@ namespace GymCore.Application.UnitTests.Workouts.Queries
 
         public GetWorkoutsListQueryHandlerTests()
         {
-            _mockWorkoutEntityRepository = RepositoryMock.GetWorkoutRepository();
+            _mockWorkoutEntityRepository = WorkoutRepositoryMock.GetWorkoutRepository();
 
             var configurationProvider = new MapperConfiguration(cfg =>
             {

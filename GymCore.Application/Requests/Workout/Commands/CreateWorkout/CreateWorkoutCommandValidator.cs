@@ -1,7 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
-using GymCore.Application.Interfaces;
 using GymCore.Application.Interfaces.Persistence;
 
 namespace GymCore.Application.Requests.Workout.Commands.CreateWorkout
@@ -9,11 +8,9 @@ namespace GymCore.Application.Requests.Workout.Commands.CreateWorkout
     public class CreateWorkoutCommandValidator : AbstractValidator<CreateWorkoutCommand>
     {
         private readonly IWorkoutRepository _workoutRepository;
-        private readonly ILoggedInUserService _loggedInUserService;
-        public CreateWorkoutCommandValidator(IWorkoutRepository workoutRepository,ILoggedInUserService loggedInUserService)
+        public CreateWorkoutCommandValidator(IWorkoutRepository workoutRepository)
         {
             _workoutRepository = workoutRepository;
-            _loggedInUserService = loggedInUserService;
 
             RuleFor(p => p.Name)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
@@ -25,13 +22,17 @@ namespace GymCore.Application.Requests.Workout.Commands.CreateWorkout
 
             RuleFor(p => p)
                 .MustAsync(WorkoutNameUniqueForUser)
-                .WithMessage("Workout with the same name already exists for current user");
+                .WithMessage("Workout with the same name already exists for current user.");
+
+            RuleFor(p => p.CreatedBy)
+                .NotEmpty().WithMessage("{PropertyName} is required.")
+                .NotNull();
         }
 
 
         private async Task<bool> WorkoutNameUniqueForUser(CreateWorkoutCommand e, CancellationToken token)
         {
-            return !(await _workoutRepository.IsWorkoutNameUnitqueForUser(e.Name, _loggedInUserService.UserId));
+            return await _workoutRepository.IsWorkoutNameUniqueForUser(e.Name, e.CreatedBy);
         }
 
 

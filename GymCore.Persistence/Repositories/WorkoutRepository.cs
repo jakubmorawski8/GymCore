@@ -13,9 +13,9 @@ namespace GymCore.Persistence.Repositories
 
         }
 
-        public Task<bool> IsWorkoutNameUnitqueForUser(string workoutName, Guid userId)
+        public Task<bool> IsWorkoutNameUniqueForUser(string workoutName, Guid userId)
         {
-            var matches = _dbContext.Workout.Any(w => w.CreatedBy == userId && w.Name == workoutName);
+            var matches = !_dbContext.Workout.Any(w => w.CreatedBy == userId && w.Name == workoutName);
             return Task.FromResult(matches);
         }
     }
