@@ -27,7 +27,7 @@ namespace GymCore.Application.Requests.Exercise.Commands.UpdateExercise
 
         private async Task<bool> IsExerciseNameUnique(string exerciseName, CancellationToken token)
         {
-            return !await _exerciseRepository.IsExerciseNameUnique(exerciseName);
+            return await _exerciseRepository.IsExerciseNameUnique(exerciseName);
         }
     }
 }
