@@ -12,7 +12,7 @@ namespace GymCore.Application.Requests.Exercise.Commands.DeleteExercise
 
         public DeleteExerciseCommandValidator(IExerciseRepository exerciseRepository)
         {
-            exerciseRepository = _exerciseRepository;
+            _exerciseRepository = exerciseRepository;
 
             RuleFor(e => e.Id)
                 .MustAsync(ExerciseHasNoRelatedWorkoutHistoryLines)

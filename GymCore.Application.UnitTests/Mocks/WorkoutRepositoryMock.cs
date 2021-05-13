@@ -76,8 +76,17 @@ namespace GymCore.Application.UnitTests.Mocks
             #region CustomRepositoryMethods
 
             var workoutForDuplicateTest = workoutEntities.FirstOrDefault();
-            mockWorkoutRepository.Setup(rep => rep.IsWorkoutNameUniqueForUser(It.IsIn(workoutForDuplicateTest.Name),It.IsIn(workoutForDuplicateTest.CreatedBy))).ReturnsAsync(false);
+            mockWorkoutRepository.Setup(rep => rep.IsWorkoutNameUniqueForUser(It.IsIn(workoutForDuplicateTest.Name), It.IsIn(workoutForDuplicateTest.CreatedBy))).ReturnsAsync(false);
             mockWorkoutRepository.Setup(rep => rep.IsWorkoutNameUniqueForUser(It.IsNotIn(workoutForDuplicateTest.Name), It.IsNotIn(workoutForDuplicateTest.CreatedBy))).ReturnsAsync(true);
+
+
+            mockWorkoutRepository.Setup(rep => rep.GetWorkoutsForUser(It.IsAny<Guid>(), It.IsAny<int>(), It.IsAny<int>())).ReturnsAsync((Guid owner, int page, int pageSize) =>
+            {
+                var skip = (page - 1) * pageSize;
+
+                var result = workoutEntities.Skip(skip).Take(pageSize).ToList();
+                return result;
+            });
 
             #endregion CustomRepositoryMethods
 

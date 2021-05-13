@@ -1,9 +1,10 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using GymCore.Application.Exceptions;
+
 using GymCore.Application.Interfaces.Persistence;
 using GymCore.Application.Profiles;
 using GymCore.Application.Requests.Workout.Commands.CreateWorkout;

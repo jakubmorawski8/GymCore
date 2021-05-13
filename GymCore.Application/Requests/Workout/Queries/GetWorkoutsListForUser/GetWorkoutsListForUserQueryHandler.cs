@@ -11,17 +11,17 @@ namespace GymCore.Application.Requests.Workout.Queries.GetWorkoutsListForUser
 {
     public class GetWorkoutsListForUserQueryHandler : IRequestHandler<GetWorkoutsListForUserQuery, List<WorkoutListVm>>
     {
-        private readonly IUserWorkoutRepository _userWorkoutRepository;
+        private readonly IWorkoutRepository _workoutRepository;
         private readonly IMapper _mapper;
-        public GetWorkoutsListForUserQueryHandler(IUserWorkoutRepository userWorkoutRepository,
+        public GetWorkoutsListForUserQueryHandler(IWorkoutRepository workoutRepository,
                                                 IMapper mapper)
         {
             _mapper = mapper;
-            _userWorkoutRepository = userWorkoutRepository;
+            _workoutRepository = workoutRepository;
         }
         public async Task<List<WorkoutListVm>> Handle(GetWorkoutsListForUserQuery request, CancellationToken cancellationToken)
         {
-            var allWorkouts = (await _userWorkoutRepository.GetPagedReponseAsync(request.Owner, request.page, request.size)).ToList();
+            var allWorkouts = (await _workoutRepository.GetWorkoutsForUser(request.Owner, request.page, request.size)).ToList();
             return _mapper.Map<List<WorkoutListVm>>(allWorkouts);
         }
     }

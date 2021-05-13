@@ -26,9 +26,12 @@ namespace GymCore.Persistence.Repositories
             return await _dbContext.Set<T>().ToListAsync();
         }
 
-        public virtual async Task<IReadOnlyList<T>> GetPagedReponseAsync(int page, int size)
+        public async Task<IReadOnlyList<T>> GetPagedResponseAsync(IQueryable<T> query, int page, int pageSize)
         {
-            return await _dbContext.Set<T>().Skip((page - 1) * size).Take(size).AsNoTracking().ToListAsync();
+            var skip = (page - 1) * pageSize;
+            var result = query.Skip(skip).Take(pageSize).ToListAsync();
+
+            return await result;
         }
 
         public async Task<T> AddAsync(T entity)

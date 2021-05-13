@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -32,10 +32,10 @@ namespace GymCore.Application.UnitTests.Workout.Commands
         {
             var customTxt = "workout has not been deleted";
             var handler = new DeleteWorkoutCommandHandler(_mockWorkoutEntityRepository.Object);
-            var workoutToDeleteGuid = Guid.Parse("{b7ebdbf9-8e89-464a-b288-1b4b161f713f}");
+            var workoutToDelete = (await _mockWorkoutEntityRepository.Object.ListAllAsync()).LastOrDefault();
             await handler.Handle(new DeleteWorkoutCommand()
             {
-                Id = workoutToDeleteGuid
+                Id = workoutToDelete.Id
             },
             CancellationToken.None);
 

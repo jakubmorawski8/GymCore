@@ -15,6 +15,14 @@ namespace GymCore.Application.Requests.Exercise.Commands.DeleteExercise
         }
         public async Task<Unit> Handle(DeleteExerciseCommand request, CancellationToken cancellationToken)
         {
+            var validator = new DeleteExerciseCommandValidator(_exerciseRepository);
+            var validationResult = await validator.ValidateAsync(request);
+
+            if (validationResult.Errors.Count > 0)
+            {
+                throw new Exceptions.ValidationException(validationResult);
+            }
+
             var exerciseToDelete = await _exerciseRepository.GetByIdAsync(request.Id);
             await _exerciseRepository.DeleteAsync(exerciseToDelete);
             return Unit.Value;

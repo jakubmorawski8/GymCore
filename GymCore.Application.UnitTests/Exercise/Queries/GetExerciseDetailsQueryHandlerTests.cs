@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using GymCore.Application.Interfaces.Persistence;
@@ -32,10 +33,12 @@ namespace GymCore.Application.UnitTests.Exercise.Queries
         public async Task GetExerciseDetailsTest()
         {
             var handler = new GetExerciseDetailsQueryHandler(_mockExerciseEntityRepository.Object, _mapper);
-
-            var result = await handler.Handle(new GetExerciseDetailsQuery(), CancellationToken.None);
+            var exerciseEntityToTest = (await _mockExerciseEntityRepository.Object.ListAllAsync()).FirstOrDefault();
+            var result = await handler.Handle(new GetExerciseDetailsQuery()
+            {
+                Id = exerciseEntityToTest.Id
+            }, CancellationToken.None);
             result.ShouldBeOfType<ExerciseDetailsVm>();
-
         }
     }
 }

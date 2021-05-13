@@ -17,11 +17,13 @@ namespace GymCore.Application.UnitTests.Mocks
             {
                 new ExerciseEntity
                 {
+                    Id = Guid.Parse("{394d3cf6-1fb7-4fba-9428-aacbe0188ccd}"),
                     Name = "Deadlift",
                     Description = "Deadlift"
                 },
                 new ExerciseEntity
                 {
+                    Id = Guid.Parse("{5a697731-dc61-4b27-b286-62d746566b95}"),
                     Name = "Overhead Press",
                     Description = "Overhead Press"
                 }
@@ -59,9 +61,16 @@ namespace GymCore.Application.UnitTests.Mocks
             #endregion Commands
 
             #region CustomRepositoryMethods
-            var exerciseForDuplicateTest = exerciseEntities.FirstOrDefault();
-            mockExerciseRepository.Setup(rep => rep.IsExerciseNameUnique(It.IsIn(exerciseForDuplicateTest.Name))).ReturnsAsync(false);
-            mockExerciseRepository.Setup(rep => rep.IsExerciseNameUnique(It.IsNotIn(exerciseForDuplicateTest.Name))).ReturnsAsync(true);
+            var exerciseForTest = exerciseEntities.FirstOrDefault();
+            mockExerciseRepository.Setup(rep => rep.IsExerciseNameUnique(It.IsIn(exerciseForTest.Name))).ReturnsAsync(false);
+            mockExerciseRepository.Setup(rep => rep.IsExerciseNameUnique(It.IsNotIn(exerciseForTest.Name))).ReturnsAsync(true);
+
+            mockExerciseRepository.Setup(rep => rep.ExerciseHasNoRelatedWorkoutHistoryLines(It.IsIn(exerciseForTest.Id))).ReturnsAsync(false);
+            mockExerciseRepository.Setup(rep => rep.ExerciseHasNoRelatedWorkoutHistoryLines(It.IsNotIn(exerciseForTest.Id))).ReturnsAsync(true);
+
+            mockExerciseRepository.Setup(rep => rep.ExerciseHasNoRelatedWorkouts(It.IsIn(exerciseForTest.Id))).ReturnsAsync(false);
+            mockExerciseRepository.Setup(rep => rep.ExerciseHasNoRelatedWorkouts(It.IsNotIn(exerciseForTest.Id))).ReturnsAsync(true);
+
             #endregion CustomRepositoryMethods
 
             return mockExerciseRepository;
