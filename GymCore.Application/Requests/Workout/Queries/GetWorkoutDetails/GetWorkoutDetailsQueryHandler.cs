@@ -21,11 +21,8 @@ namespace GymCore.Application.Requests.Workout.Queries.GetWorkoutDetails
         {
             var workout = await _workoutRepository.GetByIdAsync(request.Id);
             var workoutDetailDto = _mapper.Map<WorkoutDetailsVm>(workout);
-
             var user = _mapper.Map<WorkoutUserDto>(workout.CreatedBy);
-
             workoutDetailDto.WorkoutUserDto = user;
-
             return workoutDetailDto;
         }
     }

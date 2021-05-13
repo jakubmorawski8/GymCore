@@ -12,6 +12,9 @@ namespace GymCore.Persistence.Configurations
                 .IsRequired(true);
             builder.Property(x => x.Description)
                 .HasMaxLength(1000);
+
+            builder.HasIndex(x => x.Name).IsUnique(true);
+
         }
     }
 }

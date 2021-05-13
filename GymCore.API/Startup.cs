@@ -1,4 +1,6 @@
+﻿using GymCore.API.Services;
 using GymCore.Application;
+using GymCore.Application.Interfaces;
 using GymCore.Identity;
 using GymCore.Persistence;
 using Microsoft.AspNetCore.Builder;
@@ -25,6 +27,8 @@ namespace GymCore
             services.AddApplicationServices();
             services.AddPersistenceServices(Configuration);
             services.AddIdentityServices(Configuration);
+
+            services.AddScoped<ILoggedInUserService, LoggedInUserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace GymCore.Application.Interfaces.Persistence
@@ -11,6 +12,6 @@ namespace GymCore.Application.Interfaces.Persistence
         Task<T> AddAsync(T entity);
         Task UpdateAsync(T entity);
         Task DeleteAsync(T entity);
-        Task<IReadOnlyList<T>> GetPagedReponseAsync(int page, int size);
+        Task<IReadOnlyList<T>> GetPagedResponseAsync(IQueryable<T> query, int page, int pageSize);
     }
 }
