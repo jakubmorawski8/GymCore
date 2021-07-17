@@ -12,8 +12,7 @@ namespace GymCore.Persistence
         {
             services.AddEntityFrameworkNpgsql().AddDbContext<T>(options =>
                 options.UseNpgsql(connectionString,
-                x => x.MigrationsAssembly(typeof(T).Assembly.FullName))
-                );
+                x => x.MigrationsAssembly(typeof(T).Assembly.FullName)).UseSnakeCaseNamingConvention());
         }
 
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)

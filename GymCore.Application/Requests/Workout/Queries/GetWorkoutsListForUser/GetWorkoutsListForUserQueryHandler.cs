@@ -21,7 +21,7 @@ namespace GymCore.Application.Requests.Workout.Queries.GetWorkoutsListForUser
         }
         public async Task<List<WorkoutListVm>> Handle(GetWorkoutsListForUserQuery request, CancellationToken cancellationToken)
         {
-            var allWorkouts = (await _workoutRepository.GetWorkoutsForUser(request.Owner, request.page, request.size)).ToList();
+            var allWorkouts = (await _workoutRepository.GetWorkoutsForUser(request.Owner, request.Page, request.Size)).ToList();
             return _mapper.Map<List<WorkoutListVm>>(allWorkouts);
         }
     }

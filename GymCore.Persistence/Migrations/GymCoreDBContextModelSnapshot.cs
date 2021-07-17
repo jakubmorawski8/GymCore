@@ -23,223 +23,282 @@ namespace GymCore.Persistence.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedDate")
+                        .HasColumnName("created_date")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
+                        .HasColumnName("description")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("ModifiedDate")
+                        .HasColumnName("modified_date")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
+                        .HasColumnName("name")
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_exercise");
 
-                    b.ToTable("ExerciseEntity");
+                    b.ToTable("exercise");
                 });
 
             modelBuilder.Entity("GymCore.Domain.Entities.ExerciseHistoryHeaderEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedDate")
+                        .HasColumnName("created_date")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("EndDateTime")
+                        .HasColumnName("end_date_time")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("ModifiedDate")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("modified_date")
                         .HasColumnType("timestamp without time zone")
                         .HasDefaultValueSql("now()");
 
                     b.Property<DateTime>("StartDateTime")
+                        .HasColumnName("start_date_time")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("UserId")
+                        .HasColumnName("user_id")
                         .HasColumnType("uuid");
 
                     b.Property<Guid?>("WorkoutId")
+                        .HasColumnName("workout_id")
                         .HasColumnType("uuid");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_exercise_history_header_entity");
 
-                    b.HasIndex("WorkoutId");
+                    b.HasIndex("WorkoutId")
+                        .HasName("ix_exercise_history_header_entity_workout_id");
 
-                    b.ToTable("ExerciseHistoryHeaderEntity");
+                    b.ToTable("exercise_history_header_entity");
                 });
 
             modelBuilder.Entity("GymCore.Domain.Entities.ExerciseHistoryLinesEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedDate")
+                        .HasColumnName("created_date")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid?>("ExerciseHistoryHeaderId")
+                        .HasColumnName("exercise_history_header_id")
                         .HasColumnType("uuid");
 
                     b.Property<Guid?>("ExerciseId")
+                        .HasColumnName("exercise_id")
                         .HasColumnType("uuid");
 
                     b.Property<double>("Load")
+                        .HasColumnName("load")
                         .HasColumnType("double precision");
 
                     b.Property<DateTime>("ModifiedDate")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("modified_date")
                         .HasColumnType("timestamp without time zone")
                         .HasDefaultValueSql("now()");
 
                     b.Property<int>("QtyRepetitions")
+                        .HasColumnName("qty_repetitions")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_exercise_history_lines_entity");
 
-                    b.HasIndex("ExerciseHistoryHeaderId");
+                    b.HasIndex("ExerciseHistoryHeaderId")
+                        .HasName("ix_exercise_history_lines_entity_exercise_history_header_id");
 
-                    b.HasIndex("ExerciseId");
+                    b.HasIndex("ExerciseId")
+                        .HasName("ix_exercise_history_lines_entity_exercise_id");
 
-                    b.ToTable("ExerciseHistoryLinesEntity");
+                    b.ToTable("exercise_history_lines_entity");
                 });
 
             modelBuilder.Entity("GymCore.Domain.Entities.UserWorkoutEntity", b =>
                 {
                     b.Property<Guid>("UserId")
+                        .HasColumnName("user_id")
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("WorkoutId")
+                        .HasColumnName("workout_id")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedDate")
+                        .HasColumnName("created_date")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("Id")
+                        .HasColumnName("id")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("ModifiedDate")
+                        .HasColumnName("modified_date")
                         .HasColumnType("timestamp without time zone");
 
-                    b.HasKey("UserId", "WorkoutId");
+                    b.HasKey("UserId", "WorkoutId")
+                        .HasName("pk_user_workout");
 
-                    b.HasIndex("WorkoutId");
+                    b.HasIndex("WorkoutId")
+                        .HasName("ix_user_workout_workout_id");
 
-                    b.ToTable("UserWorkoutEntity");
+                    b.ToTable("user_workout");
                 });
 
             modelBuilder.Entity("GymCore.Domain.Entities.WorkoutAreaEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedDate")
+                        .HasColumnName("created_date")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("ModifiedDate")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("modified_date")
                         .HasColumnType("timestamp without time zone")
                         .HasDefaultValueSql("now()");
 
                     b.Property<int>("QtyRepetitions")
+                        .HasColumnName("qty_repetitions")
                         .HasColumnType("integer");
 
                     b.Property<Guid?>("WorkoutId")
+                        .HasColumnName("workout_id")
                         .HasColumnType("uuid");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_workout_area_entity");
 
-                    b.HasIndex("WorkoutId");
+                    b.HasIndex("WorkoutId")
+                        .HasName("ix_workout_area_entity_workout_id");
 
-                    b.ToTable("WorkoutAreaEntity");
+                    b.ToTable("workout_area_entity");
                 });
 
             modelBuilder.Entity("GymCore.Domain.Entities.WorkoutAreaExerciseEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedDate")
+                        .HasColumnName("created_date")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("ExerciseId")
+                        .HasColumnName("exercise_id")
                         .HasColumnType("uuid");
 
                     b.Property<double>("Load")
+                        .HasColumnName("load")
                         .HasColumnType("double precision");
 
                     b.Property<DateTime>("ModifiedDate")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("modified_date")
                         .HasColumnType("timestamp without time zone")
                         .HasDefaultValueSql("now()");
 
                     b.Property<int>("QtyRepetitions")
+                        .HasColumnName("qty_repetitions")
                         .HasColumnType("integer");
 
                     b.Property<Guid>("WorkoutAreaId")
+                        .HasColumnName("workout_area_id")
                         .HasColumnType("uuid");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_workout_area_exercise");
 
-                    b.HasIndex("ExerciseId");
+                    b.HasIndex("ExerciseId")
+                        .HasName("ix_workout_area_exercise_exercise_id");
 
-                    b.HasIndex("WorkoutAreaId");
+                    b.HasIndex("WorkoutAreaId")
+                        .HasName("ix_workout_area_exercise_workout_area_id");
 
-                    b.ToTable("WorkoutAreaExerciseEntity");
+                    b.ToTable("workout_area_exercise");
                 });
 
             modelBuilder.Entity("GymCore.Domain.Entities.WorkoutEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("CreatedBy")
+                        .HasColumnName("created_by")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedDate")
+                        .HasColumnName("created_date")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
+                        .HasColumnName("description")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("ModifiedDate")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("modified_date")
                         .HasColumnType("timestamp without time zone")
                         .HasDefaultValueSql("now()");
 
                     b.Property<string>("Name")
+                        .HasColumnName("name")
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_workout_entity");
 
-                    b.ToTable("Workouts");
+                    b.ToTable("workout_entity");
                 });
 
             modelBuilder.Entity("GymCore.Domain.Entities.ExerciseHistoryHeaderEntity", b =>
                 {
                     b.HasOne("GymCore.Domain.Entities.WorkoutEntity", "Workout")
                         .WithMany()
-                        .HasForeignKey("WorkoutId");
+                        .HasForeignKey("WorkoutId")
+                        .HasConstraintName("fk_exercise_history_header_entity_workout_entity_workout_id");
                 });
 
             modelBuilder.Entity("GymCore.Domain.Entities.ExerciseHistoryLinesEntity", b =>
                 {
                     b.HasOne("GymCore.Domain.Entities.ExerciseHistoryHeaderEntity", "ExerciseHistoryHeader")
                         .WithMany()
-                        .HasForeignKey("ExerciseHistoryHeaderId");
+                        .HasForeignKey("ExerciseHistoryHeaderId")
+                        .HasConstraintName("fk_exercise_history_lines_entity_exercise_history_header_entit");
 
                     b.HasOne("GymCore.Domain.Entities.ExerciseEntity", "Exercise")
-                        .WithMany()
-                        .HasForeignKey("ExerciseId");
+                        .WithMany("ExerciseHistoryLines")
+                        .HasForeignKey("ExerciseId")
+                        .HasConstraintName("fk_exercise_history_lines_entity_exercise_exercise_id");
                 });
 
             modelBuilder.Entity("GymCore.Domain.Entities.UserWorkoutEntity", b =>
@@ -247,6 +306,7 @@ namespace GymCore.Persistence.Migrations
                     b.HasOne("GymCore.Domain.Entities.WorkoutEntity", "Workout")
                         .WithMany("UserWorkouts")
                         .HasForeignKey("WorkoutId")
+                        .HasConstraintName("fk_user_workout_workout_entity_workout_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -255,7 +315,8 @@ namespace GymCore.Persistence.Migrations
                 {
                     b.HasOne("GymCore.Domain.Entities.WorkoutEntity", "Workout")
                         .WithMany()
-                        .HasForeignKey("WorkoutId");
+                        .HasForeignKey("WorkoutId")
+                        .HasConstraintName("fk_workout_area_entity_workout_entity_workout_id");
                 });
 
             modelBuilder.Entity("GymCore.Domain.Entities.WorkoutAreaExerciseEntity", b =>
@@ -263,12 +324,14 @@ namespace GymCore.Persistence.Migrations
                     b.HasOne("GymCore.Domain.Entities.ExerciseEntity", "Exercise")
                         .WithMany("WorkoutAreasExercise")
                         .HasForeignKey("ExerciseId")
+                        .HasConstraintName("fk_workout_area_exercise_exercise_exercise_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("GymCore.Domain.Entities.WorkoutAreaEntity", "WorkoutArea")
                         .WithMany("WorkoutAreasExercise")
                         .HasForeignKey("WorkoutAreaId")
+                        .HasConstraintName("fk_workout_area_exercise_workout_area_entity_workout_area_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

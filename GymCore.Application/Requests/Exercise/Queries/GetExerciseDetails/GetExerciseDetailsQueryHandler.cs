@@ -6,7 +6,7 @@ using MediatR;
 
 namespace GymCore.Application.Requests.Exercise.Queries.GetExerciseDetails
 {
-    public class GetExerciseDetailsQueryHandler : IRequestHandler<GetExerciseDetailsQuery, ExerciseDetailsVm>
+    public class GetExerciseDetailsQueryHandler : IRequestHandler<GetExerciseDetailsQuery, GetExerciseDetailsQueryResponse>
     {
         private readonly IExerciseRepository _exerciseRepository;
         private readonly IMapper _mapper;
@@ -16,11 +16,18 @@ namespace GymCore.Application.Requests.Exercise.Queries.GetExerciseDetails
             _exerciseRepository = exerciseRepository;
             _mapper = mapper;
         }
-        public async Task<ExerciseDetailsVm> Handle(GetExerciseDetailsQuery request, CancellationToken cancellationToken)
+        public async Task<GetExerciseDetailsQueryResponse> Handle(GetExerciseDetailsQuery request, CancellationToken cancellationToken)
         {
+            var response = new GetExerciseDetailsQueryResponse();
             var exercise = await _exerciseRepository.GetByIdAsync(request.Id);
+
+            if (exercise is null)
+                response.Success = false;
+
             var exerciseDetailDto = _mapper.Map<ExerciseDetailsVm>(exercise);
-            return exerciseDetailDto;
+            response.ExerciseDetailsVm = exerciseDetailDto;
+
+            return response;
         }
     }
 }
