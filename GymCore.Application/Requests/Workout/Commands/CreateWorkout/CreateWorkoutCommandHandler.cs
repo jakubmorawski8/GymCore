@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using GymCore.Application.Exceptions;
 using GymCore.Application.Interfaces.Persistence;
 using GymCore.Domain.Entities;
 using MediatR;
@@ -22,9 +23,9 @@ namespace GymCore.Application.Requests.Workout.Commands.CreateWorkout
             var validator = new CreateWorkoutCommandValidator(_workoutRepository);
             var validationResult = await validator.ValidateAsync(request);
 
-            if (validationResult.Errors.Count > 0)
+            if (!validationResult.IsValid)
             {
-                throw new Exceptions.ValidationException(validationResult);
+                throw new ValidationException(validationResult);
             }
 
             var workout = _mapper.Map<WorkoutEntity>(request);

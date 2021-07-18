@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using FluentValidation.Results;
 
 namespace GymCore.Application.Responses
 {
@@ -33,16 +32,5 @@ namespace GymCore.Application.Responses
         public string Message { get; set; }
         public string Status { get; set; }
         public List<string> ValidationErrors { get; set; }
-
-        public void InitializeErrorResponse(IList<ValidationFailure> errors)
-        {
-            Success = false;
-            ValidationErrors = new List<string>();
-            foreach (var error in errors)
-            {
-                ValidationErrors.Add(error.ErrorMessage);
-            }
-        }
-
     }
 }

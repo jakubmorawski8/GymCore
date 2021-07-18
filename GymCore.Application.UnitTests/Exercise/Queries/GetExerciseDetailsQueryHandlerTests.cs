@@ -38,7 +38,7 @@ namespace GymCore.Application.UnitTests.Exercise.Queries
             {
                 Id = exerciseEntityToTest.Id
             }, CancellationToken.None);
-            result.ShouldBeOfType<ExerciseDetailsVm>();
+            result.ShouldBeOfType<GetExerciseDetailsQueryResponse>();
         }
     }
 }

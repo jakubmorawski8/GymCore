@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using GymCore.Application.Exceptions;
 using GymCore.Application.Interfaces.Persistence;
 using MediatR;
 
@@ -18,9 +19,9 @@ namespace GymCore.Application.Requests.Exercise.Commands.DeleteExercise
             var validator = new DeleteExerciseCommandValidator(_exerciseRepository);
             var validationResult = await validator.ValidateAsync(request);
 
-            if (validationResult.Errors.Count > 0)
+            if (!validationResult.IsValid)
             {
-                throw new Exceptions.ValidationException(validationResult);
+                throw new ValidationException(validationResult);
             }
 
             var exerciseToDelete = await _exerciseRepository.GetByIdAsync(request.Id);

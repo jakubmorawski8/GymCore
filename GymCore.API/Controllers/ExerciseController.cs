@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using GymCore.Application.Exceptions;
 using GymCore.Application.Requests.Exercise.Queries.GetExerciseDetails;
 using MediatR;
 using Microsoft.AspNetCore.Http;
