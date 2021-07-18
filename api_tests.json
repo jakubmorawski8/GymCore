@@ -1,0 +1,46 @@
+{
+	"info": {
+		"_postman_id": "a6358ef5-4dea-482e-8820-a80b52507780",
+		"name": "GymCore Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "{{api}}/exercise/dda005cf-297d-450c-ae57-f65be5adebe7",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Exercise null value\", function() {\r",
+							"    var jsonData = JSON.parse(responseBody);\r",
+							"    pm.expect(jsonData['exerciseDetailsVm']).to.be.null;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api}}/exercise/dda005cf-297d-450c-ae57-f65be5adebe7",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"exercise",
+						"dda005cf-297d-450c-ae57-f65be5adebe7"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
