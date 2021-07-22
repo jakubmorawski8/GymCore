@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using GymCore.Application.Exceptions;
 using GymCore.Application.Interfaces.Persistence;
 using MediatR;
 
@@ -22,7 +23,7 @@ namespace GymCore.Application.Requests.Exercise.Queries.GetExerciseDetails
             var exercise = await _exerciseRepository.GetByIdAsync(request.Id);
 
             if (exercise is null)
-                response.Success = false;
+                throw new NotFoundException("Exercise", request.Id);
 
             var exerciseDetailDto = _mapper.Map<ExerciseDetailsVm>(exercise);
             response.ExerciseDetailsVm = exerciseDetailDto;

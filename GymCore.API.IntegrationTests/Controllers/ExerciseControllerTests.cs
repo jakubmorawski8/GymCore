@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using GymCore.API.IntegrationTests.Base;
 using GymCore.Application.Requests.Exercise.Queries.GetExerciseDetails;
 using Newtonsoft.Json;
+using Shouldly;
 using Xunit;
 
 namespace GymCore.API.IntegrationTests.Controllers
@@ -28,8 +29,8 @@ namespace GymCore.API.IntegrationTests.Controllers
 
             var result = JsonConvert.DeserializeObject<GetExerciseDetailsQueryResponse>(responseString);
 
-            Assert.Null(result.ExerciseDetailsVm);
-            Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+            result.ExerciseDetailsVm.ShouldBeNull();
+            response.StatusCode.ShouldBe(HttpStatusCode.NotFound);
         }
 
         [Fact]
@@ -41,8 +42,8 @@ namespace GymCore.API.IntegrationTests.Controllers
 
             var result = JsonConvert.DeserializeObject<GetExerciseDetailsQueryResponse>(responseString);
 
-            Assert.NotNull(result.ExerciseDetailsVm);
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            result.ExerciseDetailsVm.ShouldNotBeNull();
+            response.StatusCode.ShouldBe(HttpStatusCode.OK);
         }
     }
 }
