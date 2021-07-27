@@ -2,14 +2,28 @@ name: .NET
 
 on:
   push:
-    branches: [ master, dev ]
+    branches: [ DEV, master ]
   pull_request:
-    branches: [ master, dev ]
+    branches: [ DEV, master ]
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
+     services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTRES_HOST: localhost
+          POSTGRES_PORT: 5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
 
     steps:
     - uses: actions/checkout@v2
