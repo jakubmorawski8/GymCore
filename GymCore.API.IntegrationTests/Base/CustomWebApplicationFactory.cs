@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using GymCore.Persistence;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -12,8 +13,13 @@ namespace GymCore.API.IntegrationTests.Base
     {
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
+            builder.UseStartup<TStartup>();
             builder.ConfigureServices(services =>
             {
+                var descriptor = services.SingleOrDefault(
+                d => d.ServiceType == typeof(DbContextOptions<GymCoreDbContext>));
+
+                services.Remove(descriptor);
                 services.AddDbContext<GymCoreDbContext>(options =>
                 {
                     options.UseInMemoryDatabase("GymCOreDbContextInMemoryTest");

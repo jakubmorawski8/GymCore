@@ -21,12 +21,12 @@ namespace GymCore
             Configuration = configuration;
         }
 
-        public void ConfigureServices(IServiceCollection services)
+        public virtual void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
             services.AddApplicationServices();
-            services.AddPersistenceServices(Configuration);
-            services.AddIdentityServices(Configuration);
+            services.AddPersistenceServices(Configuration.GetConnectionString("GymCoreDbContext"));
+            services.AddIdentityServices(Configuration.GetConnectionString("GymCoreIdentityDbContext"));
 
             services.AddScoped<ILoggedInUserService, LoggedInUserService>();
 
@@ -45,7 +45,7 @@ namespace GymCore
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
