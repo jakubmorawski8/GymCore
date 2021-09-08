@@ -24,6 +24,12 @@ namespace GymCore.Application.Requests.Exercise.Commands.DeleteExercise
             }
 
             var exerciseToDelete = await _exerciseRepository.GetByIdAsync(request.Id);
+
+            if (exerciseToDelete == null)
+            {
+                throw new Exceptions.NotFoundException("Exercise", request.Id);
+            }
+
             await _exerciseRepository.DeleteAsync(exerciseToDelete);
             return Unit.Value;
         }

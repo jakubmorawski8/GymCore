@@ -1,4 +1,5 @@
-﻿using GymCore.API.Services;
+﻿using GymCore.API.Middleware;
+using GymCore.API.Services;
 using GymCore.Application;
 using GymCore.Application.Interfaces;
 using GymCore.Identity;
@@ -45,6 +46,8 @@ namespace GymCore
 
             app.UseAuthentication();
 
+            app.UseCors("Open");
+            app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
