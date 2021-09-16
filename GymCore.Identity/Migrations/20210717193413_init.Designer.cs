@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GymCore.Identity.Migrations
 {
     [DbContext(typeof(GymCoreIdentityDbContext))]
-    [Migration("20210506174606_init")]
+    [Migration("20210717193413_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

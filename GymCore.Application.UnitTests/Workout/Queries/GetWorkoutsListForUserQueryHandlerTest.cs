@@ -41,8 +41,8 @@ namespace GymCore.Application.UnitTests.Workout.Queries
             var result = await handler.Handle(new GetWorkoutsListForUserQuery()
             {
                 Owner = ownetGuid,
-                page = page,
-                size = pageSize
+                Page = page,
+                Size = pageSize
             }, CancellationToken.None);
 
             result.ShouldBeOfType<List<WorkoutListVm>>();

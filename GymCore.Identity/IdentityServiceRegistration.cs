@@ -1,7 +1,6 @@
 ﻿using GymCore.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GymCore.Identity
@@ -10,16 +9,14 @@ namespace GymCore.Identity
     {
         private static void AddDbContext<T>(this IServiceCollection services, string connectionString) where T : DbContext
         {
-            services.AddEntityFrameworkNpgsql().AddDbContext<T>(options =>
+            services.AddDbContext<T>(options =>
                 options.UseNpgsql(connectionString,
-                x => x.MigrationsAssembly(typeof(T).Assembly.FullName))
-                );
+                x => x.MigrationsAssembly(typeof(T).Assembly.FullName)));
         }
 
-        public static IServiceCollection AddIdentityServices(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddIdentityServices(this IServiceCollection services, string connectionString)
         {
-            var csIdentityDb = configuration.GetConnectionString("GymCoreIdentityDbContext");
-            services.AddDbContext<GymCoreIdentityDbContext>(csIdentityDb);
+            services.AddDbContext<GymCoreIdentityDbContext>(connectionString);
             services.AddIdentity<UserEntity, RoleEntity>()
                 .AddEntityFrameworkStores<GymCoreIdentityDbContext>()
                 .AddDefaultTokenProviders();

@@ -15,16 +15,13 @@ namespace GymCore.Application.Requests.Exercise.Commands.CreateExercise
             RuleFor(p => p.Name)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
-                 .MaximumLength(60).WithMessage("{PropertyName} must not exceed 50 characters.")
-                 .MustAsync(IsExerciseNameUnique)
-                 .WithMessage("Exercise with the same name already exists.");
-
-
+                .MaximumLength(60).WithMessage("{PropertyName} must not exceed {MaxLength} characters.")
+                .MustAsync(IsExerciseNameUnique)
+                .WithMessage("Exercise with the same name already exists.");
 
             RuleFor(p => p.Description)
-               .MaximumLength(1000).WithMessage("{PropertyName} must not exceed 1000 characters.");
+                .MaximumLength(1000).WithMessage("{PropertyName} must not exceed {MaxLength} characters.");
         }
-
 
         private async Task<bool> IsExerciseNameUnique(string exerciseName, CancellationToken token)
         {

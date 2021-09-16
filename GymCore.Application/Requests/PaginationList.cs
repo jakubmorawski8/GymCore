@@ -2,7 +2,7 @@
 {
     public class PaginationList
     {
-        public int page { get; set; }
-        public int size { get; set; }
+        public int Page { get; set; }
+        public int Size { get; set; }
     }
 }

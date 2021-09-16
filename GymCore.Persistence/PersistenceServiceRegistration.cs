@@ -1,7 +1,6 @@
 ﻿using GymCore.Application.Interfaces.Persistence;
 using GymCore.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GymCore.Persistence
@@ -10,17 +9,15 @@ namespace GymCore.Persistence
     {
         private static void AddDbContext<T>(this IServiceCollection services, string connectionString) where T : DbContext
         {
-            services.AddEntityFrameworkNpgsql().AddDbContext<T>(options =>
+            services.AddDbContext<T>(options =>
                 options.UseNpgsql(connectionString,
-                x => x.MigrationsAssembly(typeof(T).Assembly.FullName))
-                );
+                x => x.MigrationsAssembly(typeof(T).Assembly.FullName)).UseSnakeCaseNamingConvention());
         }
 
-        public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddPersistenceServices(this IServiceCollection services, string connectionString)
         {
             #region DbContexts
-            var csCoreDb = configuration.GetConnectionString("GymCoreDBContext");
-            services.AddDbContext<GymCoreDbContext>(csCoreDb);
+            services.AddDbContext<GymCoreDbContext>(connectionString);
             #endregion DbContexts
 
             #region Repositories

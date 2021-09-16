@@ -45,7 +45,6 @@ namespace GymCore.Application.UnitTests.Mocks
 
             #endregion Init
 
-
             #region Queries
 
             mockWorkoutRepository.Setup(rep => rep.ListAllAsync()).ReturnsAsync(workoutEntities);

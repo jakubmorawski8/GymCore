@@ -14,7 +14,7 @@ namespace GymCore.Application.Requests.Exercise.Commands.UpdateExercise
 
         public UpdateExerciseCommandHandler(IExerciseRepository exerciseRepository, IMapper mapper)
         {
-            _exerciseRepository = _exerciseRepository;
+            _exerciseRepository = exerciseRepository;
             _mapper = mapper;
         }
         public async Task<Unit> Handle(UpdateExerciseCommand request, CancellationToken cancellationToken)
