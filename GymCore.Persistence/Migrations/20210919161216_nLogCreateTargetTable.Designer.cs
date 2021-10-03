@@ -3,15 +3,17 @@ using System;
 using GymCore.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace GymCore.Persistence.Migrations
 {
     [DbContext(typeof(GymCoreDbContext))]
-    partial class GymCoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210919161216_nLogCreateTargetTable")]
+    partial class nLogCreateTargetTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -162,6 +164,10 @@ namespace GymCore.Persistence.Migrations
                         .HasColumnName("logger")
                         .HasColumnType("text");
 
+                    b.Property<string>("MachineName")
+                        .HasColumnName("machine_name")
+                        .HasColumnType("text");
+
                     b.Property<string>("Message")
                         .HasColumnName("message")
                         .HasColumnType("text");
@@ -172,12 +178,12 @@ namespace GymCore.Persistence.Migrations
                         .HasColumnType("timestamp without time zone")
                         .HasDefaultValueSql("now()");
 
-                    b.Property<string>("Source")
-                        .HasColumnName("source")
-                        .HasColumnType("text");
-
                     b.Property<string>("StackTrace")
                         .HasColumnName("stack_trace")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Thread")
+                        .HasColumnName("thread")
                         .HasColumnType("text");
 
                     b.Property<string>("Username")
