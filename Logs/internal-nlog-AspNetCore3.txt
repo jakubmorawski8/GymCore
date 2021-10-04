@@ -1,0 +1,7 @@
+2021-09-27 20:28:37.1526 Info Message Template Auto Format enabled
+2021-09-27 20:28:37.2466 Info Loading assembly: NLog.Web.AspNetCore
+2021-09-27 20:28:37.3566 Info Adding target FileTarget(Name=allfile)
+2021-09-27 20:28:37.3787 Info Adding target FileTarget(Name=ownFile-web)
+2021-09-27 20:28:37.3787 Info Adding target ConsoleTarget(Name=lifetimeConsole)
+2021-09-27 20:28:37.3947 Info Adding target DatabaseTarget(Name=database)
+2021-09-27 20:28:37.4808 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, database, ConfigItems=102, FilePath=C:\Projects\GymCore\GymCore.API\bin\Debug\netcoreapp3.1\nlog.config

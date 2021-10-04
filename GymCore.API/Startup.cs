@@ -29,6 +29,7 @@ namespace GymCore
             services.AddIdentityServices(Configuration.GetConnectionString("GymCoreIdentityDbContext"));
 
             services.AddScoped<ILoggedInUserService, LoggedInUserService>();
+            services.AddSingleton<ILoggerManager, LoggerManager>();
 
             services.AddCors(options =>
             {
