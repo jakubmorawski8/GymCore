@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using GymCore.API.Services;
@@ -66,8 +67,17 @@ namespace GymCore.API.Controllers
 
             try
             {
-                await _userManager.CreateAsync(user, request.Password);
-                return Ok();
+                var result = await _userManager.CreateAsync(user, request.Password);
+
+                if (!result.Succeeded)
+                {
+                    return BadRequest(result.Errors);
+                }
+
+                await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("userName", user.UserName));
+                await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("email", user.Email));
+
+                return Ok(result);
             }
             catch (Exception e)
             {

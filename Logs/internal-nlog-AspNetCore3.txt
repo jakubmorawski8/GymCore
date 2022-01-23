@@ -5,3 +5,135 @@
 2021-09-27 20:28:37.3787 Info Adding target ConsoleTarget(Name=lifetimeConsole)
 2021-09-27 20:28:37.3947 Info Adding target DatabaseTarget(Name=database)
 2021-09-27 20:28:37.4808 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, database, ConfigItems=102, FilePath=C:\Projects\GymCore\GymCore.API\bin\Debug\netcoreapp3.1\nlog.config
+2022-01-22 12:45:36.3750 Info Message Template Auto Format enabled
+2022-01-22 12:45:36.4381 Info Loading assembly: NLog.Web.AspNetCore
+2022-01-22 12:45:36.7116 Info Adding target FileTarget(Name=allfile)
+2022-01-22 12:45:36.7587 Info Adding target FileTarget(Name=ownFile-web)
+2022-01-22 12:45:36.7587 Info Adding target ConsoleTarget(Name=lifetimeConsole)
+2022-01-22 12:45:36.7811 Info Adding target DatabaseTarget(Name=database)
+2022-01-22 12:45:36.9295 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, database, ConfigItems=102, FilePath=C:\Projects\GymCore\GymCore.API\bin\Debug\netcoreapp3.1\nlog.config
+2022-01-22 12:45:43.2410 Error DatabaseTarget(Name=database): Error when writing to database. Exception: Npgsql.NpgsqlException (0x80004005): Exception while connecting
+ ---> System.Net.Sockets.SocketException (10061): Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia.
+   at Npgsql.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.ConnectorPool.AllocateLong(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<>c__DisplayClass32_0.<<Open>g__OpenLong|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnection.Open()
+   at NLog.Targets.DatabaseTarget.OpenConnection(String connectionString, LogEventInfo logEventInfo)
+   at NLog.Targets.DatabaseTarget.EnsureConnectionOpen(String connectionString, LogEventInfo logEventInfo)
+   at NLog.Targets.DatabaseTarget.WriteLogEventToDatabase(LogEventInfo logEvent, String connectionString)
+2022-01-22 12:47:20.2703 Info Message Template Auto Format enabled
+2022-01-22 12:47:20.3272 Info Loading assembly: NLog.Web.AspNetCore
+2022-01-22 12:47:20.4843 Info Adding target FileTarget(Name=allfile)
+2022-01-22 12:47:20.5376 Info Adding target FileTarget(Name=ownFile-web)
+2022-01-22 12:47:20.5376 Info Adding target ConsoleTarget(Name=lifetimeConsole)
+2022-01-22 12:47:20.5663 Info Adding target DatabaseTarget(Name=database)
+2022-01-22 12:47:21.2925 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, database, ConfigItems=102, FilePath=C:\Projects\GymCore\GymCore.API\bin\Debug\netcoreapp3.1\nlog.config
+2022-01-22 12:47:26.6299 Error DatabaseTarget(Name=database): Error when writing to database. Exception: Npgsql.NpgsqlException (0x80004005): Exception while connecting
+ ---> System.Net.Sockets.SocketException (10061): Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia.
+   at Npgsql.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.ConnectorPool.AllocateLong(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<>c__DisplayClass32_0.<<Open>g__OpenLong|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnection.Open()
+   at NLog.Targets.DatabaseTarget.OpenConnection(String connectionString, LogEventInfo logEventInfo)
+   at NLog.Targets.DatabaseTarget.EnsureConnectionOpen(String connectionString, LogEventInfo logEventInfo)
+   at NLog.Targets.DatabaseTarget.WriteLogEventToDatabase(LogEventInfo logEvent, String connectionString)
+2022-01-22 13:45:06.3463 Info Message Template Auto Format enabled
+2022-01-22 13:45:06.3783 Info Loading assembly: NLog.Web.AspNetCore
+2022-01-22 13:45:06.4764 Info Adding target FileTarget(Name=allfile)
+2022-01-22 13:45:06.5030 Info Adding target FileTarget(Name=ownFile-web)
+2022-01-22 13:45:06.5070 Info Adding target ConsoleTarget(Name=lifetimeConsole)
+2022-01-22 13:45:06.5345 Info Adding target DatabaseTarget(Name=database)
+2022-01-22 13:45:06.6027 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, database, ConfigItems=102, FilePath=C:\Projects\GymCore\GymCore.API\bin\Debug\netcoreapp3.1\nlog.config
+2022-01-22 13:45:07.4353 Error DatabaseTarget(Name=database): Error when writing to database. Exception: Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "GymCoreAdmin"
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass160_0.<<DoReadMessage>g__ReadMessageLong|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnector.<>c__DisplayClass160_0.<<DoReadMessage>g__ReadMessageLong|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnector.AuthenticateSASL(List`1 mechanisms, String username, Boolean async)
+   at Npgsql.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async)
+   at Npgsql.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.ConnectorPool.AllocateLong(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<>c__DisplayClass32_0.<<Open>g__OpenLong|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Npgsql.NpgsqlConnection.Open()
+   at NLog.Targets.DatabaseTarget.OpenConnection(String connectionString, LogEventInfo logEventInfo)
+   at NLog.Targets.DatabaseTarget.EnsureConnectionOpen(String connectionString, LogEventInfo logEventInfo)
+   at NLog.Targets.DatabaseTarget.WriteLogEventToDatabase(LogEventInfo logEvent, String connectionString)
+  Exception data:
+    Severity: FATAL
+    SqlState: 28P01
+    MessageText: password authentication failed for user "GymCoreAdmin"
+    File: auth.c
+    Line: 338
+    Routine: auth_failed
+2022-01-22 14:23:23.4271 Info Message Template Auto Format enabled
+2022-01-22 14:23:23.5627 Info Loading assembly: NLog.Web.AspNetCore
+2022-01-22 14:23:24.5581 Info Adding target FileTarget(Name=allfile)
+2022-01-22 14:23:24.5774 Info Adding target FileTarget(Name=ownFile-web)
+2022-01-22 14:23:24.5842 Info Adding target ConsoleTarget(Name=lifetimeConsole)
+2022-01-22 14:23:24.6062 Info Adding target DatabaseTarget(Name=database)
+2022-01-22 14:23:24.7259 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, database, ConfigItems=102, FilePath=C:\Projects\GymCore\GymCore.API\bin\Debug\netcoreapp3.1\nlog.config
+2022-01-23 10:53:53.0033 Info Message Template Auto Format enabled
+2022-01-23 10:53:53.0338 Info Loading assembly: NLog.Web.AspNetCore
+2022-01-23 10:53:53.1689 Info Adding target FileTarget(Name=allfile)
+2022-01-23 10:53:53.1811 Info Adding target FileTarget(Name=ownFile-web)
+2022-01-23 10:53:53.1811 Info Adding target ConsoleTarget(Name=lifetimeConsole)
+2022-01-23 10:53:53.1952 Info Adding target DatabaseTarget(Name=database)
+2022-01-23 10:53:53.2446 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, database, ConfigItems=102, FilePath=C:\Projects\GymCore\GymCore.API\bin\Debug\netcoreapp3.1\nlog.config
+2022-01-23 10:59:15.3461 Info Message Template Auto Format enabled
+2022-01-23 10:59:15.3670 Info Loading assembly: NLog.Web.AspNetCore
+2022-01-23 10:59:15.4271 Info Adding target FileTarget(Name=allfile)
+2022-01-23 10:59:15.4362 Info Adding target FileTarget(Name=ownFile-web)
+2022-01-23 10:59:15.4362 Info Adding target ConsoleTarget(Name=lifetimeConsole)
+2022-01-23 10:59:15.4489 Info Adding target DatabaseTarget(Name=database)
+2022-01-23 10:59:15.4951 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, database, ConfigItems=102, FilePath=C:\Projects\GymCore\GymCore.API\bin\Debug\netcoreapp3.1\nlog.config
+2022-01-23 11:13:51.5496 Info Message Template Auto Format enabled
+2022-01-23 11:13:51.6209 Info Loading assembly: NLog.Web.AspNetCore
+2022-01-23 11:13:51.8143 Info Adding target FileTarget(Name=allfile)
+2022-01-23 11:13:51.8662 Info Adding target FileTarget(Name=ownFile-web)
+2022-01-23 11:13:51.8662 Info Adding target ConsoleTarget(Name=lifetimeConsole)
+2022-01-23 11:13:51.8894 Info Adding target DatabaseTarget(Name=database)
+2022-01-23 11:13:51.9732 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, database, ConfigItems=102, FilePath=C:\Projects\GymCore\GymCore.API\bin\Debug\netcoreapp3.1\nlog.config
+2022-01-23 11:16:38.3470 Info Message Template Auto Format enabled
+2022-01-23 11:16:38.3727 Info Loading assembly: NLog.Web.AspNetCore
+2022-01-23 11:16:38.4393 Info Adding target FileTarget(Name=allfile)
+2022-01-23 11:16:38.4498 Info Adding target FileTarget(Name=ownFile-web)
+2022-01-23 11:16:38.4498 Info Adding target ConsoleTarget(Name=lifetimeConsole)
+2022-01-23 11:16:38.4608 Info Adding target DatabaseTarget(Name=database)
+2022-01-23 11:16:38.4994 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, database, ConfigItems=102, FilePath=C:\Projects\GymCore\GymCore.API\bin\Debug\netcoreapp3.1\nlog.config
+2022-01-23 11:18:09.3707 Info Message Template Auto Format enabled
+2022-01-23 11:18:09.3960 Info Loading assembly: NLog.Web.AspNetCore
+2022-01-23 11:18:09.5202 Info Adding target FileTarget(Name=allfile)
+2022-01-23 11:18:09.5457 Info Adding target FileTarget(Name=ownFile-web)
+2022-01-23 11:18:09.5534 Info Adding target ConsoleTarget(Name=lifetimeConsole)
+2022-01-23 11:18:09.5747 Info Adding target DatabaseTarget(Name=database)
+2022-01-23 11:18:09.6247 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, database, ConfigItems=102, FilePath=C:\Projects\GymCore\GymCore.API\bin\Debug\netcoreapp3.1\nlog.config
+2022-01-23 11:20:00.8717 Info Message Template Auto Format enabled
+2022-01-23 11:20:00.9155 Info Loading assembly: NLog.Web.AspNetCore
+2022-01-23 11:20:01.0206 Info Adding target FileTarget(Name=allfile)
+2022-01-23 11:20:01.0485 Info Adding target FileTarget(Name=ownFile-web)
+2022-01-23 11:20:01.0535 Info Adding target ConsoleTarget(Name=lifetimeConsole)
+2022-01-23 11:20:01.0835 Info Adding target DatabaseTarget(Name=database)
+2022-01-23 11:20:01.1620 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, database, ConfigItems=102, FilePath=C:\Projects\GymCore\GymCore.API\bin\Debug\netcoreapp3.1\nlog.config
+2022-01-23 11:28:51.4439 Info Message Template Auto Format enabled
+2022-01-23 11:28:51.5005 Info Loading assembly: NLog.Web.AspNetCore
+2022-01-23 11:28:51.6290 Info Adding target FileTarget(Name=allfile)
+2022-01-23 11:28:51.6479 Info Adding target FileTarget(Name=ownFile-web)
+2022-01-23 11:28:51.6479 Info Adding target ConsoleTarget(Name=lifetimeConsole)
+2022-01-23 11:28:51.6679 Info Adding target DatabaseTarget(Name=database)
+2022-01-23 11:28:51.7586 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, database, ConfigItems=102, FilePath=C:\Projects\GymCore\GymCore.API\bin\Debug\netcoreapp3.1\nlog.config
+2022-01-23 11:37:33.9148 Info Message Template Auto Format enabled
+2022-01-23 11:37:33.9711 Info Loading assembly: NLog.Web.AspNetCore
+2022-01-23 11:37:34.1031 Info Adding target FileTarget(Name=allfile)
+2022-01-23 11:37:34.1296 Info Adding target FileTarget(Name=ownFile-web)
+2022-01-23 11:37:34.1331 Info Adding target ConsoleTarget(Name=lifetimeConsole)
+2022-01-23 11:37:34.1546 Info Adding target DatabaseTarget(Name=database)
+2022-01-23 11:37:34.2740 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, database, ConfigItems=102, FilePath=C:\Projects\GymCore\GymCore.API\bin\Debug\netcoreapp3.1\nlog.config

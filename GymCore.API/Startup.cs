@@ -30,6 +30,7 @@ namespace GymCore
 
             services.AddScoped<ILoggedInUserService, LoggedInUserService>();
             services.AddSingleton<ILoggerManager, LoggerManager>();
+            services.AddSingleton<JwtManager>();
 
             services.AddCors(options =>
             {

@@ -11,7 +11,7 @@ namespace GymCore.Identity
         {
             services.AddDbContext<T>(options =>
                 options.UseNpgsql(connectionString,
-                x => x.MigrationsAssembly(typeof(T).Assembly.FullName)));
+                x => x.MigrationsAssembly(typeof(T).Assembly.FullName)).UseSnakeCaseNamingConvention());
         }
 
         public static IServiceCollection AddIdentityServices(this IServiceCollection services, string connectionString)
