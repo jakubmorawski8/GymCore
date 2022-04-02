@@ -17,6 +17,8 @@ namespace GymCore.Persistence
         public DbSet<WorkoutEntity> Workouts { get; set; }
         public DbSet<WorkoutAreaExerciseEntity> WorkoutAreaExercise { get; set; }
 
+        public DbSet<LogEntity> Logs { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UserWorkoutConfiguration());
@@ -26,6 +28,7 @@ namespace GymCore.Persistence
             modelBuilder.ApplyConfiguration(new WorkoutAreaConfiguration());
             modelBuilder.ApplyConfiguration(new WorkoutAreaExerciseConfiguration());
             modelBuilder.ApplyConfiguration(new WorkoutConfiguration());
+            modelBuilder.ApplyConfiguration(new LogConfiguration());
         }
     }
 }
