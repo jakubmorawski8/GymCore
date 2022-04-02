@@ -23,6 +23,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.3" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.3" />
     <PackageReference Include="NLog" Version="4.7.15" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,5 +34,6 @@
     <None Remove="Npgsql.EntityFrameworkCore.PostgreSQL" />
     <None Remove="NLog" />
     <None Remove="NLog.Web" />
+    <None Remove="Microsoft.NET.Test.Sdk" />
   </ItemGroup>
 </Project>

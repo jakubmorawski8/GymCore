@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,11 +25,14 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.3" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.3" />
     <PackageReference Include="NLog" Version="4.7.15" />
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\GymCore.Application\GymCore.Application.csproj" />
   </ItemGroup>
+
 
   <ItemGroup>
     <None Remove="Microsoft.EntityFrameworkCore" />
@@ -38,5 +42,7 @@
     <None Remove="Npgsql.EntityFrameworkCore.PostgreSQL" />
     <None Remove="NLog" />
     <None Remove="NLog.Web" />
+    <None Remove="AutoMapper" />
+    <None Remove="Microsoft.NET.Test.Sdk" />
   </ItemGroup>
 </Project>
