@@ -10,7 +10,8 @@ namespace GymCore.Identity
         private static void AddDbContext<T>(this IServiceCollection services, string connectionString) where T : DbContext
         {
             services.AddDbContext<T>(options =>
-                options.UseNpgsql(connectionString,
+                options.UseSnakeCaseNamingConvention()
+                .UseNpgsql(connectionString,
                 x => x.MigrationsAssembly(typeof(T).Assembly.FullName)));
         }
 
