@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GymCore.Persistence.Migrations
 {
     [DbContext(typeof(GymCoreDbContext))]
-    [Migration("20210717175200_SnakeCaseNaming")]
-    partial class SnakeCaseNaming
+    [Migration("20220122132213_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -135,6 +135,61 @@ namespace GymCore.Persistence.Migrations
                         .HasName("ix_exercise_history_lines_entity_exercise_id");
 
                     b.ToTable("exercise_history_lines_entity");
+                });
+
+            modelBuilder.Entity("GymCore.Domain.Entities.LogEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("CallSite")
+                        .HasColumnName("call_site")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnName("created_date")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Exception")
+                        .HasColumnName("exception")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Level")
+                        .HasColumnName("level")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Logger")
+                        .HasColumnName("logger")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Message")
+                        .HasColumnName("message")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("modified_date")
+                        .HasColumnType("timestamp without time zone")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<string>("Source")
+                        .HasColumnName("source")
+                        .HasColumnType("text");
+
+                    b.Property<string>("StackTrace")
+                        .HasColumnName("stack_trace")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Username")
+                        .HasColumnName("username")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id")
+                        .HasName("pk_logs");
+
+                    b.ToTable("logs");
                 });
 
             modelBuilder.Entity("GymCore.Domain.Entities.UserWorkoutEntity", b =>

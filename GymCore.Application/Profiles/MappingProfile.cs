@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GymCore.Application.Requests;
 using GymCore.Application.Requests.Exercise.Commands.CreateExercise;
 using GymCore.Application.Requests.Exercise.Queries.GetExerciseDetails;
 using GymCore.Application.Requests.Exercise.Queries.GetExerciseList;
@@ -43,6 +44,10 @@ namespace GymCore.Application.Profiles
             CreateMap<CreateWorkoutAreaExerciseCommand, WorkoutAreaExerciseEntity>().ReverseMap();
             CreateMap<UpdateWorkoutAreaExerciseCommand, WorkoutAreaExerciseEntity>().ReverseMap();
             CreateMap<WorkoutAreaExerciseEntity, WorkoutAreaExerciseVm>().ReverseMap();
+
+            #region Authentication
+            CreateMap<RegisterRequest, UserEntity>();
+            #endregion Authentication
         }
     }
 }

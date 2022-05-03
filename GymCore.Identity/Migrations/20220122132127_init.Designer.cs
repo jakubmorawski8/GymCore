@@ -3,24 +3,23 @@ using System;
 using GymCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-
-#nullable disable
 
 namespace GymCore.Identity.Migrations
 {
     [DbContext(typeof(GymCoreIdentityDbContext))]
-    partial class GymCoreIdentityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220122132127_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.3")
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
+                .HasAnnotation("ProductVersion", "3.1.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
-
-            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("GymCore.Domain.Entities.UserEntity", b =>
                 {
@@ -41,7 +40,8 @@ namespace GymCore.Identity.Migrations
                     b.Property<string>("Email")
                         .HasColumnName("email")
                         .HasColumnType("character varying(256)")
-                        .HasColumnName("email");
+                        .HasMaxLength(256);
+
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnName("email_confirmed")
                         .HasColumnType("boolean");
@@ -65,12 +65,13 @@ namespace GymCore.Identity.Migrations
                     b.Property<string>("NormalizedEmail")
                         .HasColumnName("normalized_email")
                         .HasColumnType("character varying(256)")
-                        .HasColumnName("normalized_email");
+                        .HasMaxLength(256);
 
                     b.Property<string>("NormalizedUserName")
                         .HasColumnName("normalized_user_name")
                         .HasColumnType("character varying(256)")
-                        .HasColumnName("normalized_user_name");
+                        .HasMaxLength(256);
+
                     b.Property<string>("PasswordHash")
                         .HasColumnName("password_hash")
                         .HasColumnType("text");
@@ -90,20 +91,23 @@ namespace GymCore.Identity.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnName("two_factor_enabled")
                         .HasColumnType("boolean");
+
                     b.Property<string>("UserName")
                         .HasColumnName("user_name")
                         .HasColumnType("character varying(256)")
-                        .HasColumnName("user_name");
+                        .HasMaxLength(256);
+
                     b.HasKey("Id")
                         .HasName("pk_users");
+
                     b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
+                        .HasName("EmailIndex");
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasDatabaseName("UserNameIndex");
+                        .HasName("UserNameIndex");
 
-                    b.ToTable("AspNetUsers", (string)null);
+                    b.ToTable("AspNetUsers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>
@@ -121,18 +125,21 @@ namespace GymCore.Identity.Migrations
                     b.Property<string>("Name")
                         .HasColumnName("name")
                         .HasColumnType("character varying(256)")
-                        .HasColumnName("name");
+                        .HasMaxLength(256);
+
                     b.Property<string>("NormalizedName")
                         .HasColumnName("normalized_name")
                         .HasColumnType("character varying(256)")
-                        .HasColumnName("normalized_name");
+                        .HasMaxLength(256);
+
                     b.HasKey("Id")
                         .HasName("pk_roles");
+
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasDatabaseName("RoleNameIndex");
+                        .HasName("RoleNameIndex");
 
-                    b.ToTable("AspNetRoles", (string)null);
+                    b.ToTable("AspNetRoles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -141,9 +148,8 @@ namespace GymCore.Identity.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("id")
                         .HasColumnType("integer")
-                        .HasColumnName("id");
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
                     b.Property<string>("ClaimType")
                         .HasColumnName("claim_type")
                         .HasColumnType("text");
@@ -161,7 +167,8 @@ namespace GymCore.Identity.Migrations
 
                     b.HasIndex("RoleId")
                         .HasName("ix_role_claims_role_id");
-                    b.ToTable("AspNetRoleClaims", (string)null);
+
+                    b.ToTable("AspNetRoleClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
@@ -170,8 +177,8 @@ namespace GymCore.Identity.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("id")
                         .HasColumnType("integer")
-                        .HasColumnName("id");
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
                     b.Property<string>("ClaimType")
                         .HasColumnName("claim_type")
                         .HasColumnType("text");
@@ -183,12 +190,14 @@ namespace GymCore.Identity.Migrations
                     b.Property<Guid>("UserId")
                         .HasColumnName("user_id")
                         .HasColumnType("uuid");
+
                     b.HasKey("Id")
                         .HasName("pk_user_claims");
 
                     b.HasIndex("UserId")
                         .HasName("ix_user_claims_user_id");
-                    b.ToTable("AspNetUserClaims", (string)null);
+
+                    b.ToTable("AspNetUserClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
@@ -214,7 +223,8 @@ namespace GymCore.Identity.Migrations
 
                     b.HasIndex("UserId")
                         .HasName("ix_user_logins_user_id");
-                    b.ToTable("AspNetUserLogins", (string)null);
+
+                    b.ToTable("AspNetUserLogins");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
@@ -232,7 +242,8 @@ namespace GymCore.Identity.Migrations
 
                     b.HasIndex("RoleId")
                         .HasName("ix_user_roles_role_id");
-                    b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.ToTable("AspNetUserRoles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
@@ -255,7 +266,8 @@ namespace GymCore.Identity.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name")
                         .HasName("pk_user_tokens");
-                    b.ToTable("AspNetUserTokens", (string)null);
+
+                    b.ToTable("AspNetUserTokens");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -265,8 +277,7 @@ namespace GymCore.Identity.Migrations
                         .HasForeignKey("RoleId")
                         .HasConstraintName("fk_role_claims_asp_net_roles_identity_role_guid_id")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_asp_net_role_claims_asp_net_roles_role_id");
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
@@ -276,8 +287,7 @@ namespace GymCore.Identity.Migrations
                         .HasForeignKey("UserId")
                         .HasConstraintName("fk_user_claims_asp_net_users_user_entity_id")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_asp_net_user_claims_asp_net_users_user_id");
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
@@ -287,8 +297,7 @@ namespace GymCore.Identity.Migrations
                         .HasForeignKey("UserId")
                         .HasConstraintName("fk_user_logins_asp_net_users_user_entity_id")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_asp_net_user_logins_asp_net_users_user_id");
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
@@ -298,16 +307,14 @@ namespace GymCore.Identity.Migrations
                         .HasForeignKey("RoleId")
                         .HasConstraintName("fk_user_roles_asp_net_roles_identity_role_guid_id")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_asp_net_user_roles_asp_net_roles_role_id");
+                        .IsRequired();
 
                     b.HasOne("GymCore.Domain.Entities.UserEntity", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .HasConstraintName("fk_user_roles_asp_net_users_user_entity_id")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_asp_net_user_roles_asp_net_users_user_id");
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
@@ -317,8 +324,7 @@ namespace GymCore.Identity.Migrations
                         .HasForeignKey("UserId")
                         .HasConstraintName("fk_user_tokens_asp_net_users_user_entity_id")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_asp_net_user_tokens_asp_net_users_user_id");
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

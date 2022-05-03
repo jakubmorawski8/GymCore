@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GymCore.Persistence.Migrations
 {
-    public partial class SnakeCaseNaming : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -20,6 +20,27 @@ namespace GymCore.Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("pk_exercise", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "logs",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(nullable: false),
+                    created_date = table.Column<DateTime>(nullable: false),
+                    modified_date = table.Column<DateTime>(nullable: false, defaultValueSql: "now()"),
+                    call_site = table.Column<string>(nullable: true),
+                    exception = table.Column<string>(nullable: true),
+                    level = table.Column<string>(nullable: true),
+                    logger = table.Column<string>(nullable: true),
+                    message = table.Column<string>(nullable: true),
+                    stack_trace = table.Column<string>(nullable: true),
+                    username = table.Column<string>(nullable: true),
+                    source = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_logs", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -201,6 +222,9 @@ namespace GymCore.Persistence.Migrations
         {
             migrationBuilder.DropTable(
                 name: "exercise_history_lines_entity");
+
+            migrationBuilder.DropTable(
+                name: "logs");
 
             migrationBuilder.DropTable(
                 name: "user_workout");
