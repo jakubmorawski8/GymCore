@@ -3,6 +3,7 @@ using System;
 using GymCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GymCore.Identity.Migrations
 {
     [DbContext(typeof(GymCoreIdentityDbContext))]
-    partial class GymCoreIdentityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220411164130_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,76 +28,81 @@ namespace GymCore.Identity.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("id")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
 
                     b.Property<int>("AccessFailedCount")
-                        .HasColumnName("access_failed_count")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("access_failed_count");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnName("concurrency_stamp")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("concurrency_stamp");
 
                     b.Property<string>("Email")
-                        .HasColumnName("email")
+                        .HasMaxLength(256)
                         .HasColumnType("character varying(256)")
                         .HasColumnName("email");
+
                     b.Property<bool>("EmailConfirmed")
-                        .HasColumnName("email_confirmed")
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasColumnName("email_confirmed");
 
                     b.Property<string>("FirstName")
-                        .HasColumnName("first_name")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("first_name");
 
                     b.Property<string>("LastName")
-                        .HasColumnName("last_name")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("last_name");
 
                     b.Property<bool>("LockoutEnabled")
-                        .HasColumnName("lockout_enabled")
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasColumnName("lockout_enabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnName("lockout_end")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("lockout_end");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasColumnName("normalized_email")
+                        .HasMaxLength(256)
                         .HasColumnType("character varying(256)")
                         .HasColumnName("normalized_email");
 
                     b.Property<string>("NormalizedUserName")
-                        .HasColumnName("normalized_user_name")
+                        .HasMaxLength(256)
                         .HasColumnType("character varying(256)")
                         .HasColumnName("normalized_user_name");
+
                     b.Property<string>("PasswordHash")
-                        .HasColumnName("password_hash")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("password_hash");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnName("phone_number")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("phone_number");
 
                     b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnName("phone_number_confirmed")
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasColumnName("phone_number_confirmed");
 
                     b.Property<string>("SecurityStamp")
-                        .HasColumnName("security_stamp")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("security_stamp");
 
                     b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnName("two_factor_enabled")
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasColumnName("two_factor_enabled");
+
                     b.Property<string>("UserName")
-                        .HasColumnName("user_name")
+                        .HasMaxLength(256)
                         .HasColumnType("character varying(256)")
                         .HasColumnName("user_name");
+
                     b.HasKey("Id")
-                        .HasName("pk_users");
+                        .HasName("pk_asp_net_users");
+
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
@@ -110,24 +117,27 @@ namespace GymCore.Identity.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("id")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnName("concurrency_stamp")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("concurrency_stamp");
 
                     b.Property<string>("Name")
-                        .HasColumnName("name")
+                        .HasMaxLength(256)
                         .HasColumnType("character varying(256)")
                         .HasColumnName("name");
+
                     b.Property<string>("NormalizedName")
-                        .HasColumnName("normalized_name")
+                        .HasMaxLength(256)
                         .HasColumnType("character varying(256)")
                         .HasColumnName("normalized_name");
+
                     b.HasKey("Id")
-                        .HasName("pk_roles");
+                        .HasName("pk_asp_net_roles");
+
                     b.HasIndex("NormalizedName")
                         .IsUnique()
                         .HasDatabaseName("RoleNameIndex");
@@ -139,28 +149,29 @@ namespace GymCore.Identity.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("id")
                         .HasColumnType("integer")
                         .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
                     b.Property<string>("ClaimType")
-                        .HasColumnName("claim_type")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("claim_type");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnName("claim_value")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("claim_value");
 
                     b.Property<Guid>("RoleId")
-                        .HasColumnName("role_id")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("role_id");
 
                     b.HasKey("Id")
-                        .HasName("pk_role_claims");
+                        .HasName("pk_asp_net_role_claims");
 
                     b.HasIndex("RoleId")
-                        .HasName("ix_role_claims_role_id");
+                        .HasDatabaseName("ix_asp_net_role_claims_role_id");
+
                     b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
@@ -168,93 +179,99 @@ namespace GymCore.Identity.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("id")
                         .HasColumnType("integer")
                         .HasColumnName("id");
+
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
                     b.Property<string>("ClaimType")
-                        .HasColumnName("claim_type")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("claim_type");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnName("claim_value")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("claim_value");
 
                     b.Property<Guid>("UserId")
-                        .HasColumnName("user_id")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("user_id");
+
                     b.HasKey("Id")
-                        .HasName("pk_user_claims");
+                        .HasName("pk_asp_net_user_claims");
 
                     b.HasIndex("UserId")
-                        .HasName("ix_user_claims_user_id");
+                        .HasDatabaseName("ix_asp_net_user_claims_user_id");
+
                     b.ToTable("AspNetUserClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnName("login_provider")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("login_provider");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnName("provider_key")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("provider_key");
 
                     b.Property<string>("ProviderDisplayName")
-                        .HasColumnName("provider_display_name")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("provider_display_name");
 
                     b.Property<Guid>("UserId")
-                        .HasColumnName("user_id")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("user_id");
 
                     b.HasKey("LoginProvider", "ProviderKey")
-                        .HasName("pk_user_logins");
+                        .HasName("pk_asp_net_user_logins");
 
                     b.HasIndex("UserId")
-                        .HasName("ix_user_logins_user_id");
+                        .HasDatabaseName("ix_asp_net_user_logins_user_id");
+
                     b.ToTable("AspNetUserLogins", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
                 {
                     b.Property<Guid>("UserId")
-                        .HasColumnName("user_id")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("user_id");
 
                     b.Property<Guid>("RoleId")
-                        .HasColumnName("role_id")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("role_id");
 
                     b.HasKey("UserId", "RoleId")
-                        .HasName("pk_user_roles");
+                        .HasName("pk_asp_net_user_roles");
 
                     b.HasIndex("RoleId")
-                        .HasName("ix_user_roles_role_id");
+                        .HasDatabaseName("ix_asp_net_user_roles_role_id");
+
                     b.ToTable("AspNetUserRoles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
                 {
                     b.Property<Guid>("UserId")
-                        .HasColumnName("user_id")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("user_id");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnName("login_provider")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("login_provider");
 
                     b.Property<string>("Name")
-                        .HasColumnName("name")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("name");
 
                     b.Property<string>("Value")
-                        .HasColumnName("value")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("value");
 
                     b.HasKey("UserId", "LoginProvider", "Name")
-                        .HasName("pk_user_tokens");
+                        .HasName("pk_asp_net_user_tokens");
+
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
@@ -263,7 +280,6 @@ namespace GymCore.Identity.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .HasConstraintName("fk_role_claims_asp_net_roles_identity_role_guid_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_asp_net_role_claims_asp_net_roles_role_id");
@@ -274,7 +290,6 @@ namespace GymCore.Identity.Migrations
                     b.HasOne("GymCore.Domain.Entities.UserEntity", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .HasConstraintName("fk_user_claims_asp_net_users_user_entity_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_asp_net_user_claims_asp_net_users_user_id");
@@ -285,7 +300,6 @@ namespace GymCore.Identity.Migrations
                     b.HasOne("GymCore.Domain.Entities.UserEntity", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .HasConstraintName("fk_user_logins_asp_net_users_user_entity_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_asp_net_user_logins_asp_net_users_user_id");
@@ -296,7 +310,6 @@ namespace GymCore.Identity.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .HasConstraintName("fk_user_roles_asp_net_roles_identity_role_guid_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_asp_net_user_roles_asp_net_roles_role_id");
@@ -304,7 +317,6 @@ namespace GymCore.Identity.Migrations
                     b.HasOne("GymCore.Domain.Entities.UserEntity", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .HasConstraintName("fk_user_roles_asp_net_users_user_entity_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_asp_net_user_roles_asp_net_users_user_id");
@@ -315,7 +327,6 @@ namespace GymCore.Identity.Migrations
                     b.HasOne("GymCore.Domain.Entities.UserEntity", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .HasConstraintName("fk_user_tokens_asp_net_users_user_entity_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_asp_net_user_tokens_asp_net_users_user_id");
