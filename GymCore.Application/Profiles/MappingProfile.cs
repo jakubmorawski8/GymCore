@@ -46,7 +46,7 @@ namespace GymCore.Application.Profiles
             CreateMap<WorkoutAreaExerciseEntity, WorkoutAreaExerciseVm>().ReverseMap();
 
             #region Authentication
-            CreateMap<AuthRequest, UserEntity>();
+            CreateMap<RegisterRequest, UserEntity>();
             #endregion Authentication
         }
     }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using GymCore.API.Services;
@@ -13,6 +12,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GymCore.API.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class AccountsController : ControllerBase
     {
         private readonly UserManager<UserEntity> _userManager;
@@ -28,7 +29,7 @@ namespace GymCore.API.Controllers
         [HttpPost("login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> Login(AuthRequest request)
+        public async Task<IActionResult> Login(LoginRequest request)
         {
             var user = await _userManager.FindByEmailAsync(request.Email);
 
@@ -54,7 +55,7 @@ namespace GymCore.API.Controllers
         [HttpPost("register")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Register(AuthRequest request)
+        public async Task<IActionResult> Register(RegisterRequest request)
         {
             var userExist = await _userManager.FindByEmailAsync(request.Email);
 

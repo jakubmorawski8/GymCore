@@ -27,6 +27,7 @@
     <PackageReference Include="NLog" Version="4.7.15" />
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,5 +45,6 @@
     <None Remove="NLog.Web" />
     <None Remove="AutoMapper" />
     <None Remove="Microsoft.NET.Test.Sdk" />
+    <None Remove="System.Linq" />
   </ItemGroup>
 </Project>

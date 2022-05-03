@@ -16,6 +16,7 @@
     <None Remove="Npgsql.EntityFrameworkCore.PostgreSQL" />
     <None Remove="NLog" />
     <None Remove="NLog.Web" />
+    <None Remove="System.Linq" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,6 +48,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.3" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.3" />
     <PackageReference Include="NLog" Version="4.7.15" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>

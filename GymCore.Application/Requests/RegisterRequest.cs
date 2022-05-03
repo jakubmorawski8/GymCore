@@ -1,6 +1,6 @@
 ﻿namespace GymCore.Application.Requests
 {
-    public class AuthRequest
+    public class RegisterRequest
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
