@@ -34,7 +34,7 @@ namespace GymCore.Application.UnitTests.Exercise.Queries
         {
             var handler = new GetExercisesListQueryHandler(_mockExerciseEntityRepository.Object, _mapper);
 
-            var result = await handler.Handle(new GetExercisesListQuery(), CancellationToken.None);
+            var result = await handler.Handle(new GetExerciseListQuery(), CancellationToken.None);
 
             result.ShouldBeOfType<List<ExerciseListVm>>();
             result.Count.ShouldBe(2);

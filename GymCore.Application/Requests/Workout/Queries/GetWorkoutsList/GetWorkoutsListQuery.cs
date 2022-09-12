@@ -3,7 +3,7 @@ using MediatR;
 
 namespace GymCore.Application.Requests.Workout.Queries.GetWorkoutsList
 {
-    public class GetWorkoutsListQuery : PaginationList, IRequest<List<WorkoutListVm>>
+    public class GetWorkoutsListQuery : QueryParameters, IRequest<List<WorkoutListVm>>
     {
     }
 }
