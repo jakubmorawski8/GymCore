@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using GymCore.Application.Interfaces.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -52,6 +53,27 @@ namespace GymCore.Persistence.Repositories
         {
             _dbContext.Set<T>().Remove(entity);
             await _dbContext.SaveChangesAsync();
+        }
+
+        public IQueryable<T> GetAll<TKey>(Expression<Func<T, TKey>> sortCondition, bool sortDesc = false, Expression<Func<T, bool>> whereCondition = null)
+        {
+            IQueryable<T> result;
+
+            if (sortDesc)
+            {
+                result = _dbContext.Set<T>().OrderByDescending(sortCondition);
+            }                
+            else
+            {
+                result = _dbContext.Set<T>().OrderBy(sortCondition);
+            }
+
+            if(whereCondition != null)
+            {
+                result = result.Where(whereCondition);
+            }
+
+            return result;
         }
     }
 }
