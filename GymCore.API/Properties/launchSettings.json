@@ -9,14 +9,6 @@
     }
   },
   "profiles": {
-    "GymCore.API": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "applicationUrl": "http://localhost:25455",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
     "GymCore": {
       "commandName": "Project",
       "launchBrowser": true,
@@ -30,6 +22,14 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "GymCore.API": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "applicationUrl": "http://localhost:25455",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using GymCore.Application.Exceptions;
+using GymCore.Application.Requests.Exercise.Commands.CreateExercise;
 using GymCore.Application.Requests.Exercise.Queries.GetExerciseDetails;
 using GymCore.Application.Requests.Exercise.Queries.GetExerciseList;
 using MediatR;
@@ -57,6 +58,27 @@ namespace GymCore.API.Controllers
                 query.SortDirection = sortDirection;
 
                 var response = await _mediator.Send(query);
+                return Ok(response);
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        [HttpPost("create")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<GetExerciseListQueryResponse>> CreateExercise(CreateExerciseCommand command)
+        {
+            try
+            {
+                var response = await _mediator.Send(command);
                 return Ok(response);
             }
             catch (NotFoundException)

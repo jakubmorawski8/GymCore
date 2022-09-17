@@ -1,4 +1,8 @@
-﻿using GymCore.Domain.Entities;
+﻿using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using GymCore.Domain.Entities;
 using GymCore.Persistence.Configurations;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,6 +33,32 @@ namespace GymCore.Persistence
             modelBuilder.ApplyConfiguration(new WorkoutAreaExerciseConfiguration());
             modelBuilder.ApplyConfiguration(new WorkoutConfiguration());
             modelBuilder.ApplyConfiguration(new LogConfiguration());
+        }
+
+        public override Task<int> SaveChangesAsync(
+            bool acceptAllChangesOnSuccess,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var AddedEntities = ChangeTracker.Entries()
+                .Where(E => E.State == EntityState.Added)
+                .ToList();
+
+            AddedEntities.ForEach(E =>
+            {
+                E.Property("CreatedDate").CurrentValue = DateTime.UtcNow;
+                E.Property("ModifiedDate").CurrentValue = DateTime.UtcNow;
+            });
+
+            var EditedEntities = ChangeTracker.Entries()
+                .Where(E => E.State == EntityState.Modified)
+                .ToList();
+
+            EditedEntities.ForEach(E =>
+            {
+                E.Property("ModifiedDate").CurrentValue = DateTime.UtcNow;
+            });
+
+            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
         }
     }
 }
