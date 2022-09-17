@@ -32,12 +32,12 @@ namespace GymCore.Application.UnitTests.Exercise.Queries
         [Fact]
         public async Task GetExercisesListTest()
         {
-            var handler = new GetExercisesListQueryHandler(_mockExerciseEntityRepository.Object, _mapper);
+            var handler = new GetExerciseListQueryHandler(_mockExerciseEntityRepository.Object, _mapper);
 
             var result = await handler.Handle(new GetExerciseListQuery(), CancellationToken.None);
 
             result.ShouldBeOfType<List<ExerciseListVm>>();
-            result.Count.ShouldBe(2);
+            result.exercises.Count.ShouldBe(2);
         }
     }
 }

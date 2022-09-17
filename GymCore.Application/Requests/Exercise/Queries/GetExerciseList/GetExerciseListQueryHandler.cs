@@ -12,7 +12,7 @@ using MediatR;
 
 namespace GymCore.Application.Requests.Exercise.Queries.GetExerciseList
 {
-    public class GetExerciseListQueryHandler : IRequestHandler<GetExerciseListQuery, List<ExerciseListVm>>
+    public class GetExerciseListQueryHandler : IRequestHandler<GetExerciseListQuery, GetExerciseListQueryResponse>
     {
         private readonly IExerciseRepository _exerciseRepository;
         private readonly IMapper _mapper;
@@ -23,7 +23,7 @@ namespace GymCore.Application.Requests.Exercise.Queries.GetExerciseList
             _mapper = mapper;
         }
         
-        public async Task<GetExerciseListResponse> Handle(GetExerciseListQuery request, CancellationToken cancellationToken)
+        public async Task<GetExerciseListQueryResponse> Handle(GetExerciseListQuery request, CancellationToken cancellationToken)
         {
             IQueryable<ExerciseEntity> query;
             var sortDirection = request.SortDirection == "desc" ? true : false;
@@ -48,7 +48,7 @@ namespace GymCore.Application.Requests.Exercise.Queries.GetExerciseList
             }
 
             var entities = await _exerciseRepository.GetPagedResponseAsync(query, request.Page, request.Size);
-            var response = new GetExerciseListResponse();
+            var response = new GetExerciseListQueryResponse();
             response.exercises = _mapper.Map<List<ExerciseListVm>>(entities);
             return response;                
         }

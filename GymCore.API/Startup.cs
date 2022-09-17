@@ -39,10 +39,10 @@ namespace GymCore
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo
+                c.SwaggerDoc("v2", new OpenApiInfo
                 {
-                    Version = "v1",
-                    Title = "GymCoreAPI v1"
+                    Version = "v2",
+                    Title = "GymCoreAPI v2"
                 });
             });
         }
@@ -71,7 +71,7 @@ namespace GymCore
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "GymCoreAPI v1");
+                c.SwaggerEndpoint("/swagger/v2/swagger.json", "GymCoreAPI v2");
             });
         }
     }
