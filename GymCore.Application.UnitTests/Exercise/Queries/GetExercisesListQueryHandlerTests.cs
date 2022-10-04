@@ -34,10 +34,16 @@ namespace GymCore.Application.UnitTests.Exercise.Queries
         {
             var handler = new GetExerciseListQueryHandler(_mockExerciseEntityRepository.Object, _mapper);
 
-            var result = await handler.Handle(new GetExerciseListQuery(), CancellationToken.None);
+            var query = new GetExerciseListQuery();
+            query.Page = 1;
+            query.Size = 2;
+            query.SortField = "CreatedDate";
+            query.SortDirection = "asc";
+            var result = await handler.Handle(query, CancellationToken.None);
 
-            result.ShouldBeOfType<List<ExerciseListVm>>();
-            result.exercises.Count.ShouldBe(2);
+            result.ShouldBeOfType<GetExerciseListQueryResponse>();
+            result.exercises.ShouldBeOfType<List<ExerciseListVm>>();
+            result.exercises.Count.ShouldBe(query.Size);
         }
     }
 }

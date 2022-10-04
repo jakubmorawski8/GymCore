@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using GymCore.Application.Interfaces.Persistence;
 using GymCore.Domain.Entities;
 using Moq;
@@ -42,6 +43,14 @@ namespace GymCore.Application.UnitTests.Mocks
                 var result = exerciseEntities.Find(e => e.Id == id);
                 return result;
             });
+
+            mockExerciseRepository.Setup(rep => rep.GetPagedResponseAsync(It.IsAny<IQueryable<ExerciseEntity>>(), It.IsAny<int>(), It.IsAny<int>()))
+              .ReturnsAsync((IQueryable<ExerciseEntity> q, int page, int size) =>
+              {
+                  var result = exerciseEntities.Take(size);
+                  return result.ToList();
+              });
+            //mockExerciseRepository.Setup(rep => rep.GetAll<ExerciseEntity>(It.IsAny<Expression<Func<ExerciseEntity,bool>>>()).cou
 
             #endregion Queries
 
