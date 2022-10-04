@@ -5,6 +5,7 @@ using GymCore.Application.Requests.Exercise.Commands.CreateExercise;
 using GymCore.Application.Requests.Exercise.Queries.GetExerciseDetails;
 using GymCore.Application.Requests.Exercise.Queries.GetExerciseList;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

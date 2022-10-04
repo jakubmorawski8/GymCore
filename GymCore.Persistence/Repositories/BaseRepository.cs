@@ -74,6 +74,6 @@ namespace GymCore.Persistence.Repositories
             }
 
             return result;
-        }
+        }        
     }
 }
