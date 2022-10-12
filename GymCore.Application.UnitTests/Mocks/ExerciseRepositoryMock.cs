@@ -27,6 +27,12 @@ namespace GymCore.Application.UnitTests.Mocks
                     Id = Guid.Parse("{5a697731-dc61-4b27-b286-62d746566b95}"),
                     Name = "Overhead Press",
                     Description = "Overhead Press"
+                },
+                new ExerciseEntity
+                {
+                    Id = Guid.Parse("{042d38c5-bc8b-4c32-9f96-03cc47780ccb}"),
+                    Name = "Leg press",
+                    Description = "Leg press"
                 }
 
             };
@@ -45,12 +51,12 @@ namespace GymCore.Application.UnitTests.Mocks
             });
 
             mockExerciseRepository.Setup(rep => rep.GetPagedResponseAsync(It.IsAny<IQueryable<ExerciseEntity>>(), It.IsAny<int>(), It.IsAny<int>()))
-              .ReturnsAsync((IQueryable<ExerciseEntity> q, int page, int size) =>
-              {
-                  var result = exerciseEntities.Take(size);
-                  return result.ToList();
-              });
-            //mockExerciseRepository.Setup(rep => rep.GetAll<ExerciseEntity>(It.IsAny<Expression<Func<ExerciseEntity,bool>>>()).cou
+               .ReturnsAsync((IQueryable<ExerciseEntity> q, int page, int pageSize) =>
+               {
+                   var skip = (page - 1) * pageSize;
+                   var result = exerciseEntities.Skip(skip).Take(pageSize).ToList();
+                   return result;
+               });
 
             #endregion Queries
 
