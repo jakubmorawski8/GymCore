@@ -12,6 +12,9 @@ Creating applications using asynchronous programming, optimizing performance, an
 ### Clean Architecture
 Implementing Clean Architecture principles, which involve designing a well-structured project with isolated layers, utilizing Mediator and CQRS patterns, and employing Dependency Injection (DI) for maintainable and scalable code.
 
+### Entity Framework
+Using Entity Framework for efficient data access and database interaction, including code-first development, LINQ queries, database migrations
+
 ### Unit and Integration Testing
 Developing comprehensive unit and integration tests to ensure the robustness and reliability of the application.
 
